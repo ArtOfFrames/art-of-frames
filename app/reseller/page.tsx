@@ -20,7 +20,7 @@ export default function ResellerPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `*New Reseller Application*%0A%0A*Name:* ${encodeURIComponent(formData.name)}%0A*City:* ${encodeURIComponent(formData.city)}%0A*District:* ${encodeURIComponent(formData.district)}%0A*I want to:* ${encodeURIComponent(formData.wantToDo)}`;
-    window.location.href = `https://wa.me/94750350109?text=${text}`;
+    window.location.href = `https://api.whatsapp.com/send?phone=94750350109&text=${text}`;
     setFormData({ name: '', city: '', district: '', wantToDo: '' });
   };
 
@@ -379,13 +379,16 @@ export default function ResellerPage() {
                   Apply Now
                   <span className="btn-arrow">→</span>
                 </button>
-                <button
+                <a
+                  href="https://api.whatsapp.com/send?phone=94750350109"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="outline-btn"
-                  onClick={() => window.location.href = 'https://wa.me/94750350109'}
+                  style={{ textDecoration: 'none' }}
                 >
                   <Sparkles size={18} />
                   Chat on WhatsApp
-                </button>
+                </a>
               </div>
             </div>
           </div>

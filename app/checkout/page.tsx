@@ -97,7 +97,7 @@ export default function CheckoutPage() {
     message += `_Please confirm my order. Thank you!_`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/94750350109?text=${encodedMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=94750350109&text=${encodedMessage}`;
 
     // Download PDF first
     generatePDF();

@@ -618,7 +618,7 @@ export default function Home() {
                     <p style={{ fontSize: '0.9rem', lineHeight: 1.7, opacity: 0.7, marginBottom: '2.5rem' }}>{item.moreInfo}</p>
 
                     <a
-                      href="https://wa.me/94750350109"
+                      href="https://api.whatsapp.com/send?phone=94750350109"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="whatsapp-btn"
@@ -898,12 +898,15 @@ export default function Home() {
                 From corporate gifting to event souvenirs, we offer special rates and custom branding 
                 for volume orders. Let&apos;s create something unique for your brand.
               </p>
-              <button 
+              <a 
+                href="https://api.whatsapp.com/send?phone=94750350109&text=Hi, I would like to inquire about corporate/bulk orders."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="primary-btn"
-                onClick={() => window.location.href = 'https://wa.me/94750350109?text=Hi, I would like to inquire about corporate/bulk orders.'}
+                style={{ textDecoration: 'none' }}
               >
                 REQUEST A QUOTE
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -75,7 +75,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://wa.me/94750350109" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>
+                <a href="https://api.whatsapp.com/send?phone=94750350109" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>
                   <MessageCircle size={18} strokeWidth={1.5} style={{ color: 'var(--accent)' }} />
                   <span>+94 750 350 109</span>
                 </a>

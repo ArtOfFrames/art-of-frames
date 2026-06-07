@@ -88,7 +88,7 @@ export default function ContactPage() {
           </p>
 
           <div className="direct-contact-cards">
-            <div className="info-card glass" onClick={() => window.location.href = 'https://wa.me/94750350109'}>
+            <a href="https://api.whatsapp.com/send?phone=94750350109" target="_blank" rel="noopener noreferrer" className="info-card glass" style={{ textDecoration: 'none', cursor: 'pointer', display: 'flex' }}>
               <div className="icon-box whatsapp"><MessageCircle size={28} /></div>
               <div className="info-text">
                 <span className="label">Fastest Response</span>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 <p>Click to message instantly</p>
               </div>
               <ArrowRight className="action-arrow" size={20} />
-            </div>
+            </a>
 
             <div className="info-card glass">
               <div className="icon-box"><Phone size={28} /></div>

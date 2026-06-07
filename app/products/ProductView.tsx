@@ -329,7 +329,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
                     ADD TO CART
                   </button>
                   <a 
-                    href={`https://wa.me/94750350109?text=Hi, I am interested in ${selectedProduct.name}`}
+                    href={`https://api.whatsapp.com/send?phone=94750350109&text=Hi, I am interested in ${selectedProduct.name}`}
                     target="_blank"
                     className="whatsapp-btn-large"
                   >
@@ -337,7 +337,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
                   </a>
                   
                   <div className="bulk-order-notice">
-                    Need more than 10? <a href={`https://wa.me/94750350109?text=Hi, I would like to inquire about bulk pricing for ${selectedProduct.name}`} target="_blank">Contact us for bulk pricing.</a>
+                    Need more than 10? <a href={`https://api.whatsapp.com/send?phone=94750350109&text=Hi, I would like to inquire about bulk pricing for ${selectedProduct.name}`} target="_blank">Contact us for bulk pricing.</a>
                   </div>
                 </div>
               </div>
