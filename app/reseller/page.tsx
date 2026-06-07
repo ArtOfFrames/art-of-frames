@@ -381,7 +381,7 @@ export default function ResellerPage() {
                 </button>
                 <button
                   className="outline-btn"
-                  onClick={() => window.open('https://wa.me/94750350109', '_blank')}
+                  onClick={() => window.location.href = 'https://wa.me/94750350109'}
                 >
                   <Sparkles size={18} />
                   Chat on WhatsApp

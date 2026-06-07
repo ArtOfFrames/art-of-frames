@@ -103,7 +103,7 @@ export default function CheckoutPage() {
     generatePDF();
 
     // Redirect to WhatsApp
-    window.open(whatsappUrl, '_blank');
+    window.location.href = whatsappUrl;
     
     // Clear cart
     clearCart();

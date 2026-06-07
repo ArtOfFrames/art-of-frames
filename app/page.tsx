@@ -900,7 +900,7 @@ export default function Home() {
               </p>
               <button 
                 className="primary-btn"
-                onClick={() => window.open('https://wa.me/94750350109?text=Hi, I would like to inquire about corporate/bulk orders.', '_blank')}
+                onClick={() => window.location.href = 'https://wa.me/94750350109?text=Hi, I would like to inquire about corporate/bulk orders.'}
               >
                 REQUEST A QUOTE
               </button>
