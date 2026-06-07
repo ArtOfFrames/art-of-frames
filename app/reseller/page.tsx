@@ -20,7 +20,7 @@ export default function ResellerPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = `*New Reseller Application*%0A%0A*Name:* ${encodeURIComponent(formData.name)}%0A*City:* ${encodeURIComponent(formData.city)}%0A*District:* ${encodeURIComponent(formData.district)}%0A*I want to:* ${encodeURIComponent(formData.wantToDo)}`;
-    window.open(`https://wa.me/94750350109?text=${text}`, '_blank');
+    window.location.href = `https://wa.me/94750350109?text=${text}`;
     setFormData({ name: '', city: '', district: '', wantToDo: '' });
   };
 
