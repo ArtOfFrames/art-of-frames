@@ -38,7 +38,7 @@ export default function Home() {
 
   const carouselItems = [
     {
-      src: '/hero-images/slide-card.png',
+      src: '/hero-images/keytags.webp',
       name: 'Custom Keytags',
       bgText: 'Custom \n Keytags',
       desc: 'Discover our premium range of custom laser-cut keytags, designed for durability and personal expression. Each piece is a miniature masterpiece of precision engineering.',
@@ -52,21 +52,21 @@ export default function Home() {
       tagline: 'Because the best gifts are the ones they will never want to put down — or give back.'
     },
     {
-      src: '/bike-3.png',
+      src: '/hero-images/mommy-frames.webp',
       name: 'Mommy frames',
       bgText: 'Mommy \n Frames',
       desc: 'Celebrate the bond that matters most. Our Mommy Frames are designed to showcase the purest love, with graceful outlines and premium wood finishes that last a lifetime.',
       tagline: 'Some bonds are too beautiful to fade. We make sure they never do.'
     },
     {
-      src: '/bike-4.png',
+      src: '/hero-images/signboard.webp',
       name: 'Sign Boards',
       bgText: 'Logo  \n Sign Boards',
       desc: 'Your brand deserves to stand out in high definition. Our bespoke logo sign boards combine dimensional layering with professional-grade laser cutting for ultimate impact.',
       tagline: 'First impressions are everything. Make yours impossible to ignore.'
     },
     {
-      src: '/bike-5.png',
+      src: '/hero-images/wallart.webp',
       name: 'Wall Arts',
       bgText: 'Wall \n arts',
       desc: 'Transform your living space with intricate wall art. From complex geometric mandalas to minimal silhouettes, our laser-cut pieces add depth and texture to any interior.',
@@ -524,29 +524,26 @@ export default function Home() {
 
           <div className="expertise-grid">
             {[
-              {
-                title: 'Laser Cutting',
-                desc: 'Precision cutting for wood, acrylic, and textiles with intricate detail.',
-                moreInfo: 'Our high-power CO2 laser systems deliver surgical precision for architectural models, bespoke signage, and intricate woodcraft. We handle MDF, Plywood, and Acrylic up to 10mm.',
-                img: '/expertise-1.png'
+               {
+                title: 'Custom Products',
+                desc: 'Tailor-made gifts and corporate branding solutions.',
+                img: '/expertise-1.webp'
               },
               {
                 title: 'Laser Engraving',
-                desc: 'Fine art engraving on leather, glass, and metal surfaces.',
-                moreInfo: 'Permanent, high-contrast marking for luxury leather goods, crystal awards, and industrial metal tagging. Perfect for logos, personal dedications, and intricate patterns.',
-                img: '/expertise-2.png'
+                desc: 'Fine art engraving on wooden surfaces.',
+                img: '/expertise-2.webp'
               },
               {
-                title: 'Custom Products',
-                desc: 'Tailor-made gifts and corporate branding solutions.',
-                moreInfo: 'From conceptual design to finished product. We create one-of-a-kind keytags, coasters, and layered wall art tailored to your personal or corporate identity.',
-                img: '/expertise-3.png'
+                title: 'Laser Cutting',
+                desc: 'Precision cutting for wood, cardboard and paper with precise detail.',
+                img: '/expertise-3.webp'
               },
+             
               {
                 title: 'Photo Frames',
-                desc: 'Premium layered frames that celebrate your most cherished moments.',
-                moreInfo: 'Bespoke multi-layered photo frames and memory boxes. Using premium hardwoods and precision-etched glass to transform your photos into 3D heirloom pieces.',
-                img: '/expertise-4.png'
+                desc: 'Premium plymount and glass frames that celebrate your most cherished moments.',
+                img: '/expertise-4.webp'
               }
             ].map((item, i) => (
               <div key={i} className="card-container" style={{ perspective: '1000px', height: '540px' }}>
@@ -728,12 +725,12 @@ export default function Home() {
 
           <div className="works-bento-grid">
             {[
-              { title: 'Oak Signature Frame', category: 'Premium Frames', desc: 'Layered hardwood & precision glass cuts for a timeless heirloom display.', img: '/expertise-4.png', span: 'col-span-8 row-span-2' },
-              { title: 'Walnut Identity', category: 'Engraving', desc: 'Deep-etched brand marks on natural walnut — lasting impressions.', img: '/expertise-2.png', span: 'col-span-4 row-span-1' },
-              { title: 'Acrylic Geometrics', category: 'Precision Cutting', desc: 'Crystal-clear acrylic shaped into intricate geometric forms.', img: '/expertise-1.png', span: 'col-span-4 row-span-1' },
-              { title: 'Bespoke Keytags', category: 'Custom Gifts', desc: 'Miniature masterpieces — engraved with names, dates, or logos.', img: '/expertise-3.png', span: 'col-span-4 row-span-1' },
-              { title: 'Floral Wall Art', category: 'Interior Decor', desc: 'Multi-layer laser-cut florals that bring texture to any wall.', img: '/expertise-1.png', span: 'col-span-4 row-span-1' },
-              { title: 'Corporate Plaques', category: 'Awards', desc: 'Surgical engravings on glass and metal — recognition, perfected.', img: '/expertise-2.png', span: 'col-span-4 row-span-1' }
+              { title: 'Custom Light Board', category: 'Light Board', desc: 'Custom Logo Light Board with precision laser cutting.', img: '/Works-1.webp', span: 'col-span-8 row-span-2' },
+              { title: 'Corporate Name Keytags', category: 'Keytags', desc: 'Laser-cut and engraved wooden name keytags crafted with beautiful script lettering.', img: '/Works-2.webp', span: 'col-span-4 row-span-1' },
+              { title: 'Logo Wall Art', category: 'Logo Sign', desc: 'Vibrant, multi-colored custom signage designed to make your brand stand out.', img: '/Works-3.webp', span: 'col-span-4 row-span-1' },
+              { title: 'Logo Wall Art', category: 'Logo Sign', desc: 'Sleek, high-contrast monochrome restaurant branding and custom chef logos.', img: '/Works-4.webp', span: 'col-span-4 row-span-1' },
+              { title: 'Open/Closed Board', category: 'Sign', desc: 'Dual-sided circular wooden signs with a striking dual-tone layered finish.', img: '/Works-5.webp', span: 'col-span-4 row-span-1' },
+              { title: 'Sliding Card', category: 'Custom Gift', desc: 'Interactive, laser-engraved wooden greeting cards featuring a unique sliding mechanism.', img: '/Works-6.webp', span: 'col-span-4 row-span-1' }
             ].map((work, i) => (
               <div key={i} className={`work-card ${work.span}`} style={{
                 position: 'relative',
