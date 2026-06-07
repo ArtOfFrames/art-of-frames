@@ -90,17 +90,17 @@ export default function AboutPage() {
                   What started as a passion for precision and design has grown into one of the most 
                   trusted names in laser cutting and engraving. Founded with a simple belief — that 
                   every object can be transformed into art — Art Of Frames has been pushing the 
-                  boundaries of what's possible with laser technology since 2017.
+                  boundaries of what&apos;s possible with laser technology since 2017.
                 </p>
                 <p>
-                  From humble beginnings with a single laser cutter in a small workshop, we've 
+                  From humble beginnings with a single laser cutter in a small workshop, we&apos;ve 
                   expanded into a state-of-the-art facility equipped with industrial-grade CO2 and 
                   fiber laser systems. Our team of skilled artisans and engineers work side by side, 
                   ensuring each piece that leaves our studio meets the highest standards of quality 
                   and craftsmanship.
                 </p>
                 <p>
-                  Whether it's a custom keytag for a local customer or a bulk corporate order for 
+                  Whether it&apos;s a custom keytag for a local customer or a bulk corporate order for 
                   an international brand, every project receives the same meticulous attention to 
                   detail and passion for perfection.
                 </p>
@@ -227,8 +227,8 @@ export default function AboutPage() {
                 Where Art Meets <span className="gold-accent">Engineering</span>
               </h2>
               <p className="craft-desc">
-                We don't just operate machines — we master them. Our team combines years of 
-                hands-on laser experience with an artist's eye for detail. Every project is an 
+                We don&apos;t just operate machines — we master them. Our team combines years of 
+                hands-on laser experience with an artist&apos;s eye for detail. Every project is an 
                 opportunity to create something extraordinary.
               </p>
               <ul className="craft-list">
@@ -266,7 +266,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-cta-card glass">
             <div className="about-cta-content">
-              <span className="cta-subtitle">Let's Create Together</span>
+              <span className="cta-subtitle">Let&apos;s Create Together</span>
               <h2 className="cta-title">Ready to Bring Your<br/>Idea to Life?</h2>
               <p className="cta-desc">
                 Whether you have a clear vision or need inspiration, our team is ready to help 

@@ -65,9 +65,10 @@ export default function ContactPage() {
       if (formRef.current) formRef.current.reset();
       setTimeout(() => setStatus('idle'), 5000);
       
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Fetch Error:", error);
-      alert("Network Error: Could not connect to the server.");
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      alert(`Network Error: Could not connect to the server. (${errorMessage})`);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
@@ -79,7 +80,7 @@ export default function ContactPage() {
         
         {/* Left Column: Hero Text & Direct Contacts */}
         <div className="contact-content-left">
-          <span className="subtitle">Let's Connect</span>
+          <span className="subtitle">Let&apos;s Connect</span>
           <h1 className="title">Frame Your<br/>Moments<span className="gold-slash">.</span></h1>
           <p className="description">
             Looking for a custom design, corporate gifting, or just have a question? 

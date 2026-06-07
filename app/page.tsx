@@ -4,6 +4,14 @@ import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
+interface Review {
+  name: string;
+  role: string;
+  stars: number;
+  photo: string;
+  review: string;
+}
+
 export default function Home() {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,14 +24,14 @@ export default function Home() {
 
   const carouselItems = [
     {
-      src: '/image-1.png',
+      src: '/hero-images/slide-card.png',
       name: 'Custom Keytags',
       bgText: 'Custom \n Keytags',
       desc: 'Discover our premium range of custom laser-cut keytags, designed for durability and personal expression. Each piece is a miniature masterpiece of precision engineering.',
       tagline: 'Carry something that means something. Crafted with purpose, designed to last a lifetime.'
     },
     {
-      src: '/love-card.png',
+      src: '/hero-images/slide-card.png',
       name: 'Lovely Gifts',
       bgText: 'Lovely \n gifts',
       desc: 'Heartfelt memories deserve more than just a gesture. Our personalized gifts transform your special moments into permanent art, etched with love and technical perfection.',
@@ -51,6 +59,19 @@ export default function Home() {
       tagline: 'Art that commands the room. Silence that speaks volumes.'
     }
   ];
+
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    fetch('/reviews.json')
+      .then(res => res.json())
+      .then(data => {
+        setReviews(data);
+      })
+      .catch(err => {
+        console.error('Failed to load reviews:', err);
+      });
+  }, []);
 
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
  
@@ -523,19 +544,23 @@ export default function Home() {
                   transformStyle: 'preserve-3d'
                 }}>
                   {/* FRONT FACE */}
-                  <div className="card-face card-front" style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    backfaceVisibility: 'hidden',
-                    borderRadius: '40px',
-                    overflow: 'hidden',
-                    background: 'var(--glass-bg)',
-                    border: '1px solid var(--glass-border)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
-                  }}>
+                  <div
+                    className="card-face card-front"
+                    onClick={() => toggleFlip(i)}
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      backfaceVisibility: 'hidden',
+                      borderRadius: '40px',
+                      overflow: 'hidden',
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      cursor: 'pointer',
+                      willChange: 'transform, box-shadow'
+                    }}>
                     <div style={{ position: 'relative', height: '260px', width: '100%', overflow: 'hidden' }}>
                       <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover' }} />
                       <div style={{
@@ -550,7 +575,6 @@ export default function Home() {
                       <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
                       <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, marginBottom: '1.5rem', flex: 1 }}>{item.desc}</p>
                       <div
-                        onClick={(e) => { e.stopPropagation(); toggleFlip(i); }}
                         style={{
                           display: 'flex',
                           alignItems: 'center',
@@ -644,10 +668,18 @@ export default function Home() {
           .is-flipped {
             transform: rotateY(180deg);
           }
+          .card-front {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+          }
           .card-front:hover {
             transform: translateY(-8px);
-            border-color: var(--primary);
+            border-color: var(--primary) !important;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+          }
+          .arrow {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           }
           .card-front:hover .arrow {
             transform: translateX(8px);
@@ -864,7 +896,7 @@ export default function Home() {
               <h2 className="title">Looking for Bulk Orders?</h2>
               <p className="description">
                 From corporate gifting to event souvenirs, we offer special rates and custom branding 
-                for volume orders. Let's create something unique for your brand.
+                for volume orders. Let&apos;s create something unique for your brand.
               </p>
               <button 
                 className="primary-btn"
@@ -971,25 +1003,7 @@ export default function Home() {
         {/* Marquee Track */}
         <div className="reviews-track-wrapper">
           <div className="reviews-track">
-            {[
-              { name: 'Ayesha N.', role: 'Interior Designer', stars: 5, photo: '🧑‍🎨', review: 'The mandala wall art is absolutely stunning. The precision of the laser cutting is beyond anything I have seen. My clients were speechless.' },
-              { name: 'Roshan K.', role: 'Small Business Owner', stars: 5, photo: '👨‍💼', review: 'Our branded keytags are the perfect gift for our customers. Quality is exceptional, delivered fast, and the team was super helpful throughout.' },
-              { name: 'Dilini F.', role: 'Event Organiser', stars: 5, photo: '👩‍💼', review: 'Used Art of Frames for our wedding decor. The custom monogram was jaw-dropping. Every guest asked where we got it. Highly recommended!' },
-              { name: 'Malik S.', role: 'Corporate Client', stars: 5, photo: '🧑‍💻', review: 'Ordered 50 engraved corporate plaques for our annual ceremony. Every single one was flawless. The engraving depth and clarity is world-class.' },
-              { name: 'Priya T.', role: 'Gift Shop Owner', stars: 5, photo: '👩‍🔧', review: 'The photo frames are genuinely the most premium product I have stocked. Customers keep coming back asking for more. Absolutely love this team.' },
-              { name: 'Nuwan B.', role: 'Architect', stars: 5, photo: '🧑‍🏗️', review: 'Got a custom sign board for my studio lobby. The multi-layer laser-cut design is a conversation starter every single day. Worth every rupee.' },
-              { name: 'Shalini G.', role: 'Teacher', stars: 5, photo: '👩‍🏫', review: 'Bought a Mommy Frame as a gift. My mother cried when she saw it. The craftsmanship and the love you can feel in each piece is unreal.' },
-              { name: 'Aseka W.', role: 'Photographer', stars: 5, photo: '📸', review: 'These frames elevate my prints to gallery-level artwork. The wood finish is immaculate and the precision of the cutouts fits my prints perfectly.' },
-            ].concat([
-              { name: 'Ayesha N.', role: 'Interior Designer', stars: 5, photo: '🧑‍🎨', review: 'The mandala wall art is absolutely stunning. The precision of the laser cutting is beyond anything I have seen. My clients were speechless.' },
-              { name: 'Roshan K.', role: 'Small Business Owner', stars: 5, photo: '👨‍💼', review: 'Our branded keytags are the perfect gift for our customers. Quality is exceptional, delivered fast, and the team was super helpful throughout.' },
-              { name: 'Dilini F.', role: 'Event Organiser', stars: 5, photo: '👩‍💼', review: 'Used Art of Frames for our wedding decor. The custom monogram was jaw-dropping. Every guest asked where we got it. Highly recommended!' },
-              { name: 'Malik S.', role: 'Corporate Client', stars: 5, photo: '🧑‍💻', review: 'Ordered 50 engraved corporate plaques for our annual ceremony. Every single one was flawless. The engraving depth and clarity is world-class.' },
-              { name: 'Priya T.', role: 'Gift Shop Owner', stars: 5, photo: '👩‍🔧', review: 'The photo frames are genuinely the most premium product I have stocked. Customers keep coming back asking for more. Absolutely love this team.' },
-              { name: 'Nuwan B.', role: 'Architect', stars: 5, photo: '🧑‍🏗️', review: 'Got a custom sign board for my studio lobby. The multi-layer laser-cut design is a conversation starter every single day. Worth every rupee.' },
-              { name: 'Shalini G.', role: 'Teacher', stars: 5, photo: '👩‍🏫', review: 'Bought a Mommy Frame as a gift. My mother cried when she saw it. The craftsmanship and the love you can feel in each piece is unreal.' },
-              { name: 'Aseka W.', role: 'Photographer', stars: 5, photo: '📸', review: 'These frames elevate my prints to gallery-level artwork. The wood finish is immaculate and the precision of the cutouts fits my prints perfectly.' },
-            ]).map((r, i) => (
+            {reviews.length > 0 ? [...reviews, ...reviews].map((r, i) => (
               <div key={i} className="review-card">
                 {/* Stars */}
                 <div style={{ display: 'flex', gap: '4px', marginBottom: '1.2rem' }}>
@@ -1014,15 +1028,21 @@ export default function Home() {
                     width: '48px',
                     height: '48px',
                     borderRadius: '50%',
-                    background: 'linear-gradient(135deg, var(--primary), rgba(212,175,55,0.3))',
+                    background: r.photo ? 'transparent' : 'linear-gradient(135deg, var(--primary), rgba(212,175,55,0.3))',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: '1.4rem',
                     flexShrink: 0,
-                    border: '1px solid var(--glass-border)'
+                    border: '1px solid var(--glass-border)',
+                    overflow: 'hidden',
+                    position: 'relative'
                   }}>
-                    {r.photo}
+                    {r.photo ? (
+                      <Image src={r.photo} alt={r.name} fill style={{ objectFit: 'cover' }} />
+                    ) : (
+                      <span>{r.name.charAt(0)}</span>
+                    )}
                   </div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{r.name}</div>
@@ -1030,7 +1050,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            ))}
+            )) : null}
           </div>
         </div>
 

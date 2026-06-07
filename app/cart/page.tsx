@@ -10,7 +10,7 @@ export default function CartPage() {
     return (
       <div className="container section-padding" style={{ textAlign: 'center' }}>
         <h1 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Your Cart is Empty</h1>
-        <p style={{ opacity: 0.7, marginBottom: '2rem' }}>Looks like you haven't added anything yet.</p>
+        <p style={{ opacity: 0.7, marginBottom: '2rem' }}>Looks like you haven&apos;t added anything yet.</p>
         <Link href="/products" className="glass" style={{
           padding: '1rem 2.5rem',
           borderRadius: 'var(--radius-md)',

@@ -234,7 +234,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
           <div className="search-empty-state">
             <Search size={48} className="empty-icon" />
             <h3>No products found</h3>
-            <p>We couldn't find any products matching your search query or filters.</p>
+            <p>We couldn&apos;t find any products matching your search query or filters.</p>
             <button 
               className="reset-btn"
               onClick={() => {

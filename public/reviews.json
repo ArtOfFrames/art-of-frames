@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Ayesha",
+    "role": "Interior Designer",
+    "stars": 5,
+    "photo": "/reviews/ayesha.png",
+    "review": "The mandala wall art is absolutely stunning. The precision of the laser cutting is beyond anything I have seen. My clients were speechless."
+  },
+  {
+    "name": "Roshan",
+    "role": "Small Business Owner",
+    "stars": 5,
+    "photo": "",
+    "review": "Our branded keytags are the perfect gift for our customers. Quality is exceptional, delivered fast, and the team was super helpful throughout."
+  }
+  
+]
