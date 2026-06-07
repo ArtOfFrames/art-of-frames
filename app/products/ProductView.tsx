@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '../../components/CartContext';
 import { ShoppingBag, ChevronLeft, ChevronRight, X, Search } from 'lucide-react';
@@ -31,7 +31,22 @@ export default function ProductView({ initialProducts, categories }: ProductView
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('newest');
+  const [addedProductId, setAddedProductId] = useState<string | null>(null);
+  const addTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { addToCart } = useCart();
+
+  const handleAddToCart = (product: Product) => {
+    addToCart({ ...product, quantity: 1, image: product.mainImage });
+    if (addTimerRef.current) clearTimeout(addTimerRef.current);
+    setAddedProductId(product.id);
+    addTimerRef.current = setTimeout(() => setAddedProductId(null), 1500);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (addTimerRef.current) clearTimeout(addTimerRef.current);
+    };
+  }, []);
 
   const filteredProducts = useMemo(() => {
     // 1. Filter by category
@@ -216,14 +231,17 @@ export default function ProductView({ initialProducts, categories }: ProductView
                   
                   <div className="product-card-actions">
                     <button 
-                      className="add-to-cart-btn"
+                      className={`add-to-cart-btn ${addedProductId === product.id ? 'added' : ''}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        addToCart({ ...product, quantity: 1, image: product.mainImage });
+                        handleAddToCart(product);
                       }}
                     >
-                      <ShoppingBag size={16} />
-                      ADD TO CART
+                      {addedProductId === product.id ? (
+                        <>✓ Added</>
+                      ) : (
+                        <><ShoppingBag size={16} /> ADD TO CART</>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -322,7 +340,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
                   <button 
                     className="primary-btn full-width"
                     onClick={() => {
-                      addToCart({ ...selectedProduct, quantity: 1, image: selectedProduct.mainImage });
+                      handleAddToCart(selectedProduct);
                       setSelectedProduct(null);
                     }}
                   >
@@ -702,6 +720,13 @@ export default function ProductView({ initialProducts, categories }: ProductView
         .add-to-cart-btn:active {
           transform: translateY(0);
         }
+        .add-to-cart-btn.added {
+          background: #22c55e;
+          border-color: #22c55e;
+          color: white;
+          pointer-events: none;
+        }
+
 
         /* Modal Styles */
         .modal-overlay {
