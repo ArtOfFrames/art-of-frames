@@ -16,7 +16,6 @@ export default function Home() {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const [quoteForm, setQuoteForm] = useState({
     name: '',
@@ -30,10 +29,6 @@ export default function Home() {
       `Hi, I'm interested in bulk orders.\n\nName: ${quoteForm.name}\nQuantity: ${quoteForm.quantity || 'Not specified'}\nDetails: ${quoteForm.details}`
     );
     window.open(`https://api.whatsapp.com/send?phone=94750350109&text=${message}`, '_blank');
-  };
-
-  const toggleFlip = (index: number) => {
-    setActiveCard(activeCard === index ? null : index);
   };
 
   const carouselItems = [
@@ -527,136 +522,64 @@ export default function Home() {
                {
                 title: 'Custom Products',
                 desc: 'Tailor-made gifts and corporate branding solutions.',
-                img: '/expertise-1.webp',
-                moreInfo: 'Custom-designed laser-cut products for corporate branding and events. Each piece is precision-crafted from premium materials with your choice of finish, ensuring a professional and lasting impression.'
+                img: '/expertise-1.webp'
               },
               {
                 title: 'Laser Engraving',
                 desc: 'Fine art engraving on wooden surfaces.',
-                img: '/expertise-2.webp',
-                moreInfo: 'High-resolution laser engraving on wood, acrylic, and leather surfaces. Our advanced CO₂ laser systems achieve fine detail down to 0.1mm, perfect for intricate designs, portraits, and text.'
+                img: '/expertise-2.webp'
               },
               {
                 title: 'Laser Cutting',
                 desc: 'Precision cutting for wood, cardboard and paper with precise detail.',
-                img: '/expertise-3.webp',
-                moreInfo: 'Industrial-grade laser cutting with sub-millimeter accuracy. Capable of handling materials from thin paper to 12mm plywood, with clean, sealed edges that require no sanding.'
+                img: '/expertise-3.webp'
               },
              
               {
                 title: 'Photo Frames',
                 desc: 'Premium plymount and glass frames that celebrate your most cherished moments.',
-                img: '/expertise-4.webp',
-                moreInfo: 'Handcrafted photo frames available in multiple finishes including natural wood, matte black, and gold-trimmed. Each frame features precision-cut backing and shatter-resistant glass.'
+                img: '/expertise-4.webp'
               }
             ].map((item, i) => (
-              <div key={i} className="card-container" style={{ perspective: '1000px', height: '540px' }}>
-                <div className={`card-inner ${activeCard === i ? 'is-flipped' : ''}`} style={{
-                  position: 'relative',
-                  width: '100%',
-                  height: '100%',
-                  transition: 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                  transformStyle: 'preserve-3d'
-                }}>
-                  {/* FRONT FACE */}
-                  <div
-                    className="card-face card-front"
-                    onClick={() => toggleFlip(i)}
-                    style={{
+              <div key={i} className="card-container" style={{ height: '540px' }}>
+                <div
+                  className="expertise-card"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '40px',
+                    overflow: 'hidden',
+                    background: 'var(--glass-bg)',
+                    border: '1px solid var(--glass-border)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
+                  <div style={{ position: 'relative', height: '260px', width: '100%', overflow: 'hidden' }}>
+                    <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                    <div style={{
                       position: 'absolute',
+                      bottom: 0,
                       width: '100%',
-                      height: '100%',
-                      backfaceVisibility: 'hidden',
-                      borderRadius: '40px',
-                      overflow: 'hidden',
-                      background: 'var(--glass-bg)',
-                      border: '1px solid var(--glass-border)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      cursor: 'pointer',
-                      willChange: 'transform, box-shadow'
-                    }}>
-                    <div style={{ position: 'relative', height: '260px', width: '100%', overflow: 'hidden' }}>
-                      <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover' }} />
-                      <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        width: '100%',
-                        height: '60%',
-                        background: 'linear-gradient(to top, var(--background), transparent)'
-                      }}></div>
-                    </div>
-                    <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
-                      <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, marginBottom: '1.5rem', flex: 1 }}>{item.desc}</p>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          fontSize: '0.85rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          color: 'var(--primary)',
-                          textTransform: 'uppercase',
-                          letterSpacing: '1px'
-                        }}>
-                        Explore <span className="arrow">→</span>
-                      </div>
-                    </div>
+                      height: '60%',
+                      background: 'linear-gradient(to top, var(--background), transparent)'
+                    }}></div>
                   </div>
-
-                  {/* BACK FACE */}
-                  <div
-                    className="card-face card-back"
-                    onClick={() => setActiveCard(null)}
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      backfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)',
-                      borderRadius: '40px',
-                      overflow: 'hidden',
-                      background: 'var(--glass-bg)',
-                      border: '1px solid var(--primary)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      padding: '2.5rem 2rem',
-                      textAlign: 'center',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <h3 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--primary)' }}>Specifications</h3>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.7, opacity: 0.7, marginBottom: '2.5rem' }}>{item.moreInfo}</p>
-
-                    <a
-                      href="https://api.whatsapp.com/send?phone=94750350109"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="whatsapp-btn"
-                      onClick={(e) => e.stopPropagation()}
+                  <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, marginBottom: '1.5rem', flex: 1 }}>{item.desc}</p>
+                    <div
                       style={{
-                        width: '100%',
-                        padding: '1.2rem',
-                        background: '#25D366',
-                        color: 'white',
-                        borderRadius: '15px',
-                        fontWeight: 700,
-                        fontSize: '0.9rem',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.8rem',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-2.32 0-4.525 1.232-5.741 3.223-1.216 1.991-1.216 4.455 0 6.446 1.216 1.991 3.421 3.223 5.741 3.223 2.32 0 4.525-1.232 5.741-3.223 1.216-1.991 1.216-4.455 0-6.446-1.216-1.991-3.421-3.223-5.741-3.223zm0 2.035c1.616 0 3.125.856 3.931 2.23.805 1.374.805 3.086 0 4.46-.805 1.374-2.314 2.23-3.931 2.23-1.616 0-3.125-.856-3.931-2.23-.805-1.374-.805-3.086 0-4.46.805-1.374 2.314-2.23 3.931-2.23zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.824-1.435C8.338 21.476 10.109 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" /></svg>
-                      CONTACT ON WHATSAPP
-                    </a>
+                        gap: '0.5rem',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        color: 'var(--primary)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                      }}>
+                      Explore <span className="arrow">→</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -680,14 +603,11 @@ export default function Home() {
               grid-template-columns: 1fr;
             }
           }
-          .is-flipped {
-            transform: rotateY(180deg);
-          }
-          .card-front {
+          .expertise-card {
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
           }
-          .card-front:hover {
+          .expertise-card:hover {
             transform: translateY(-8px);
             border-color: var(--primary) !important;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
@@ -696,13 +616,8 @@ export default function Home() {
             display: inline-block;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           }
-          .card-front:hover .arrow {
+          .expertise-card:hover .arrow {
             transform: translateX(8px);
-          }
-          .whatsapp-btn:hover {
-            transform: scale(1.02);
-            background: #128C7E;
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
           }
         `}</style>
       </section>
