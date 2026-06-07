@@ -193,8 +193,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
                 key={product.id} 
                 className="product-card"
                 onClick={() => { setSelectedProduct(product); setCurrentImageIndex(0); }}
-              >
-                <div className="product-image-container">
+              >                  <div className="product-image-container">
                   <Image
                     src={product.mainImage}
                     alt={product.name}
@@ -205,8 +204,18 @@ export default function ProductView({ initialProducts, categories }: ProductView
                     {...(index < 3 ? { priority: true, loading: 'eager' as const } : {})}
                   />
                   <div className="product-overlay">
-                    <button className="view-btn">View Details</button>
+                    <button 
+                      className="overlay-btn add-cart-overlay"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                    >
+                      <ShoppingBag size={14} /> ADD TO CART
+                    </button>
+                    <button className="overlay-btn">View Details</button>
                   </div>
+                  <span className="card-category">{product.category}</span>
                   {product.discountPercentage && product.discountPercentage > 0 && (
                     <span className="sale-badge">SALE -{product.discountPercentage}%</span>
                   )}
@@ -218,8 +227,8 @@ export default function ProductView({ initialProducts, categories }: ProductView
                 </div>
                 
                 <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
                   <div className="product-meta">
-                    <span className="category-label">{product.category}</span>
                     <div className="price-group">
                       {product.originalPrice && (
                         <span className="product-price-original">Rs. {product.originalPrice.toLocaleString()}</span>
@@ -227,7 +236,6 @@ export default function ProductView({ initialProducts, categories }: ProductView
                       <span className="product-price-main">Rs. {product.price.toLocaleString()}</span>
                     </div>
                   </div>
-                  <h3 className="product-name">{product.name}</h3>
                   
                   <div className="product-card-actions">
                     <button 
@@ -569,160 +577,218 @@ export default function ProductView({ initialProducts, categories }: ProductView
         /* Grid */
         .product-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1.5rem;
           padding-bottom: 5rem;
+        }
+        @media (max-width: 1400px) {
+          .product-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 1100px) {
+          .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+          .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 480px) {
+          .product-grid { grid-template-columns: 1fr; }
         }
         .product-card {
           background: var(--glass-bg);
           border: 1px solid var(--glass-border);
-          border-radius: 30px;
+          border-radius: 16px;
           overflow: hidden;
           cursor: pointer;
-          transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+          transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+          display: flex;
+          flex-direction: column;
         }
         .product-card:hover {
-          transform: translateY(-10px);
-          border-color: var(--primary);
-          box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+          transform: translateY(-4px);
+          border-color: rgba(212, 175, 55, 0.3);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.25);
         }
 
         .product-image-container {
           position: relative;
-          aspect-ratio: 1/1;
+          aspect-ratio: 4/3;
           overflow: hidden;
+          background: #0a0a0a;
         }
-        .product-image { object-fit: cover; transition: transform 0.6s; }
-        .product-card:hover .product-image { transform: scale(1.1); }
+        .product-image { 
+          object-fit: cover; 
+          transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .product-card:hover .product-image { transform: scale(1.08); }
 
         /* Overlay */
         .product-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.3);
+          background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
+          gap: 0.75rem;
           opacity: 0;
-          transition: opacity 0.3s;
+          transition: opacity 0.35s ease;
         }
         .product-card:hover .product-overlay { opacity: 1; }
-        .view-btn {
-          padding: 0.8rem 1.5rem;
-          background: white;
-          color: black;
-          border: none;
-          border-radius: 100px;
-          font-weight: 700;
-          font-size: 0.75rem;
+        .overlay-btn {
+          padding: 0.6rem 1.4rem;
+          background: rgba(255,255,255,0.12);
+          backdrop-filter: blur(4px);
+          color: white;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 0.7rem;
           text-transform: uppercase;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+        .overlay-btn:hover {
+          background: var(--primary);
+          color: black;
+          border-color: var(--primary);
+        }
+        .overlay-btn.add-cart-overlay {
+          background: var(--primary);
+          color: black;
+          border-color: var(--primary);
+          font-weight: 700;
+        }
+        .overlay-btn.add-cart-overlay:hover {
+          background: white;
+          border-color: white;
         }
 
         /* Badge */
         .status-badge {
           position: absolute;
-          top: 1.5rem;
-          left: 1.5rem;
-          padding: 0.4rem 1rem;
-          border-radius: 100px;
-          font-size: 0.7rem;
-          font-weight: 800;
+          top: 0.75rem;
+          left: 0.75rem;
+          padding: 0.3rem 0.65rem;
+          border-radius: 6px;
+          font-size: 0.55rem;
+          font-weight: 700;
           text-transform: uppercase;
-          z-index: 5;
+          letter-spacing: 1px;
+          z-index: 6;
+          pointer-events: none;
         }
-        .status-badge.sold-out { background: rgba(255,0,0,0.1); color: #ff4444; border-color: rgba(255,0,0,0.3); }
-        .status-badge.inactive { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); }
+        .status-badge.sold-out { background: rgba(220,38,38,0.85); color: white; }
+        .status-badge.inactive { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
         
         .sale-badge {
           position: absolute;
-          top: 1rem;
-          left: 1rem;
-          background: rgba(255, 0, 0, 0.85);
-          backdrop-filter: blur(5px);
+          top: 0.75rem;
+          right: 0.75rem;
+          left: auto;
+          background: rgba(220, 38, 38, 0.9);
           color: white;
-          padding: 0.4rem 1rem;
-          border-radius: 100px;
-          font-size: 0.7rem;
-          font-weight: 800;
-          letter-spacing: 2px;
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+          font-size: 0.6rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
           z-index: 10;
-          border: 1px solid rgba(255,0,0,0.3);
-          box-shadow: 0 10px 20px rgba(255,0,0,0.2);
+          pointer-events: none;
         }
 
         /* Content */
         .product-info { 
-          padding: 1.5rem; 
-          background: rgba(255,255,255,0.02);
+          padding: 1rem 1.125rem 1.125rem;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
         }
         .product-meta {
           display: flex;
+          align-items: center;
           justify-content: space-between;
-          align-items: flex-end;
-          margin-bottom: 1rem;
+          margin-bottom: 0.35rem;
         }
-        .category-label { 
-          font-size: 0.7rem; 
-          text-transform: uppercase; 
-          letter-spacing: 2px; 
-          color: rgba(255,255,255,0.5);
+        .card-category {
+          position: absolute;
+          top: 0.75rem;
+          left: 0.75rem;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(8px);
+          color: white;
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+          font-size: 0.55rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          z-index: 5;
+          border: 1px solid rgba(255,255,255,0.06);
+          pointer-events: none;
         }
         .price-group {
           display: flex;
-          flex-direction: column;
-          align-items: flex-end;
+          align-items: center;
+          gap: 0.5rem;
         }
         .product-price-original {
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.4);
+          font-size: 0.7rem;
+          color: rgba(255,255,255,0.35);
           text-decoration: line-through;
-          margin-bottom: 0.2rem;
         }
         .product-price-main {
-          font-size: 1.1rem;
+          font-size: 1rem;
           color: var(--primary);
-          font-weight: 600;
+          font-weight: 700;
         }
         .product-name { 
           font-family: var(--font-heading);
-          font-size: 1.4rem; 
-          margin-bottom: 1.5rem; 
-          line-height: 1.2;
+          font-size: 0.95rem;
+          font-weight: 600;
+          line-height: 1.3;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          flex: 1;
         }
         
         .product-card-actions {
+          margin-top: 0.75rem;
           display: flex;
-          gap: 0.8rem;
+          gap: 0.5rem;
         }
         .add-to-cart-btn {
           flex: 1;
-          background: transparent;
-          border: 1px solid var(--primary);
+          background: rgba(212, 175, 55, 0.08);
+          border: 1px solid rgba(212, 175, 55, 0.2);
           color: var(--primary);
-          padding: 0.75rem;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 800;
-          letter-spacing: 1px;
+          padding: 0.55rem 0.75rem;
+          border-radius: 8px;
+          font-size: 0.65rem;
+          font-weight: 700;
+          letter-spacing: 0.7px;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.6rem;
+          gap: 0.4rem;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .add-to-cart-btn:hover {
           background: var(--primary);
           color: black;
-          box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25);
-          transform: translateY(-2px);
+          border-color: var(--primary);
+          transform: translateY(-1px);
         }
         .add-to-cart-btn:active {
           transform: translateY(0);
         }
         .add-to-cart-btn.added {
-          background: #22c55e;
-          border-color: #22c55e;
+          background: #16a34a;
+          border-color: #16a34a;
           color: white;
           pointer-events: none;
         }

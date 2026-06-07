@@ -18,6 +18,20 @@ export default function Home() {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
+  const [quoteForm, setQuoteForm] = useState({
+    name: '',
+    quantity: '',
+    details: ''
+  });
+
+  const handleQuoteWhatsApp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const message = encodeURIComponent(
+      `Hi, I'm interested in bulk orders.\n\nName: ${quoteForm.name}\nQuantity: ${quoteForm.quantity || 'Not specified'}\nDetails: ${quoteForm.details}`
+    );
+    window.open(`https://api.whatsapp.com/send?phone=94750350109&text=${message}`, '_blank');
+  };
+
   const toggleFlip = (index: number) => {
     setActiveCard(activeCard === index ? null : index);
   };
@@ -881,7 +895,7 @@ export default function Home() {
         `}</style>
       </section>
 
-      {/* Bulk Orders CTA Section */}
+      {/* Bulk Orders CTA Section - Embedded Quote Form */}
       <section className="bulk-cta-section" style={{
         position: 'relative',
         zIndex: 100,
@@ -892,30 +906,62 @@ export default function Home() {
         <div className="container" style={{ maxWidth: '1400px' }}>
           <div className="bulk-cta-card glass">
             <div className="bulk-content">
-              <span className="subtitle">Corporate & Events</span>
-              <h2 className="title">Looking for Bulk Orders?</h2>
-              <p className="description">
-                From corporate gifting to event souvenirs, we offer special rates and custom branding 
-                for volume orders. Let&apos;s create something unique for your brand.
-              </p>
-              <a 
-                href="https://api.whatsapp.com/send?phone=94750350109&text=Hi, I would like to inquire about corporate/bulk orders."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="primary-btn"
-                style={{ textDecoration: 'none' }}
-              >
-                REQUEST A QUOTE
-              </a>
+              <div className="bulk-text">
+                <span className="subtitle">Corporate & Events</span>
+                <h2 className="title">Looking for Bulk Orders?</h2>
+                <p className="description">
+                  From corporate gifting to event souvenirs, we offer special rates and custom branding 
+                  for volume orders. Tell us what you need and we&apos;ll get back to you within 24 hours.
+                </p>
+              </div>
+
+              <form onSubmit={handleQuoteWhatsApp} className="bulk-form">
+                <div className="bf-group">
+                  <label htmlFor="bf-name">Name</label>
+                  <input
+                    id="bf-name"
+                    type="text"
+                    placeholder="Your full name"
+                    required
+                    value={quoteForm.name}
+                    onChange={e => setQuoteForm({ ...quoteForm, name: e.target.value })}
+                  />
+                </div>
+                <div className="bf-row bf-row-two">
+                  <div className="bf-group">
+                    <label htmlFor="bf-qty">Approx. Quantity</label>
+                    <input
+                      id="bf-qty"
+                      type="number"
+                      min="1"
+                      placeholder="e.g. 50"
+                      value={quoteForm.quantity}
+                      onChange={e => setQuoteForm({ ...quoteForm, quantity: e.target.value })}
+                    />
+                  </div>
+                  <div className="bf-group">
+                    <label htmlFor="bf-details">Project Details</label>
+                    <textarea
+                      id="bf-details"
+                      rows={3}
+                      placeholder="Describe what you need — product type, design ideas, custom branding, deadlines..."
+                      required
+                      value={quoteForm.details}
+                      onChange={e => setQuoteForm({ ...quoteForm, details: e.target.value })}
+                    />
+                  </div>
+                </div>
+                <button type="submit" className="bf-submit">
+                  Request a Quote on WhatsApp
+                </button>
+              </form>
             </div>
           </div>
-        </div>
-
+        </div>        
         <style jsx>{`
           .bulk-cta-card {
             border-radius: 40px;
-            padding: 5rem;
-            text-align: center;
+            padding: 4rem 5rem;
             background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(0,0,0,0.5) 100%);
             border: 1px solid rgba(212,175,55,0.2);
             position: relative;
@@ -925,17 +971,19 @@ export default function Home() {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.15) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 50%, rgba(212,175,55,0.12) 0%, transparent 60%);
             pointer-events: none;
           }
           .bulk-content {
             position: relative;
             z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 600px;
-            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+          }
+          .bulk-text {
+            text-align: left;
           }
           .subtitle {
             color: var(--primary);
@@ -944,40 +992,118 @@ export default function Home() {
             text-transform: uppercase;
             font-size: 0.8rem;
             margin-bottom: 1rem;
+            display: inline-block;
           }
           .title {
             font-family: var(--font-elegant);
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             font-weight: 400;
             margin-bottom: 1.5rem;
             line-height: 1;
             color: var(--foreground);
           }
           .description {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            opacity: 0.7;
-            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.55;
             color: var(--foreground);
           }
-          .primary-btn {
-            background: var(--primary);
-            color: black;
+
+          /* Embedded Form */
+          .bulk-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            text-align: left;
+          }
+          .bf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+          }
+          .bf-row-two {
+            grid-template-columns: 1fr 1.5fr;
+          }
+          .bf-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          .bf-group label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            opacity: 0.5;
+          }
+          .bf-group input,
+          .bf-group textarea {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.9rem 1.1rem;
+            border-radius: 14px;
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            width: 100%;
+          }
+          .bf-group input::placeholder,
+          .bf-group textarea::placeholder {
+            color: var(--foreground);
+            opacity: 0.3;
+          }
+          .bf-group input:focus,
+          .bf-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.08);
+          }
+          .bf-group textarea {
+            resize: vertical;
+            min-height: 80px;
+          }
+          .bf-submit {
+            background: #25D366;
+            color: white;
             border: none;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2rem;
             border-radius: 100px;
             font-weight: 800;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.4s;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            width: fit-content;
+            min-width: 220px;
+            margin: 0.5rem auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
           }
-          .primary-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+          .bf-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.35);
+          }
+
+          @media (max-width: 968px) {
+            .bf-row { grid-template-columns: 1fr 1fr; }
+            .bf-row-two { grid-template-columns: 1fr; }
+          }
+          @media (max-width: 968px) {
+            .bulk-content {
+              grid-template-columns: 1fr;
+              gap: 2.5rem;
+            }
           }
           @media (max-width: 768px) {
-            .bulk-cta-card { padding: 3rem 1.5rem; border-radius: 30px; }
+            .bulk-cta-card { padding: 2.5rem 1.5rem; border-radius: 30px; }
             .title { font-size: 2.5rem; }
+            .bf-row { grid-template-columns: 1fr; }
+            .description { font-size: 0.95rem; }
+            .bf-submit { width: 100%; }
           }
         `}</style>
       </section>
