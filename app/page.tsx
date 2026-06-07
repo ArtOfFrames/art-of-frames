@@ -563,24 +563,10 @@ export default function Home() {
                       height: '60%',
                       background: 'linear-gradient(to top, var(--background), transparent)'
                     }}></div>
-                  </div>
-                  <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, marginBottom: '1.5rem', flex: 1 }}>{item.desc}</p>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        color: 'var(--primary)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px'
-                      }}>
-                      Explore <span className="arrow">→</span>
+                  </div>                    <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
+                      <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, flex: 1 }}>{item.desc}</p>
                     </div>
-                  </div>
                 </div>
               </div>
             ))}
@@ -612,13 +598,7 @@ export default function Home() {
             border-color: var(--primary) !important;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
           }
-          .arrow {
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          }
-          .expertise-card:hover .arrow {
-            transform: translateX(8px);
-          }
+
         `}</style>
       </section>
       {/* Our Works Section - Optimized Bento Gallery */}
