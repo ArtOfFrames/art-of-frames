@@ -527,23 +527,27 @@ export default function Home() {
                {
                 title: 'Custom Products',
                 desc: 'Tailor-made gifts and corporate branding solutions.',
-                img: '/expertise-1.webp'
+                img: '/expertise-1.webp',
+                moreInfo: 'Custom-designed laser-cut products for corporate branding and events. Each piece is precision-crafted from premium materials with your choice of finish, ensuring a professional and lasting impression.'
               },
               {
                 title: 'Laser Engraving',
                 desc: 'Fine art engraving on wooden surfaces.',
-                img: '/expertise-2.webp'
+                img: '/expertise-2.webp',
+                moreInfo: 'High-resolution laser engraving on wood, acrylic, and leather surfaces. Our advanced CO₂ laser systems achieve fine detail down to 0.1mm, perfect for intricate designs, portraits, and text.'
               },
               {
                 title: 'Laser Cutting',
                 desc: 'Precision cutting for wood, cardboard and paper with precise detail.',
-                img: '/expertise-3.webp'
+                img: '/expertise-3.webp',
+                moreInfo: 'Industrial-grade laser cutting with sub-millimeter accuracy. Capable of handling materials from thin paper to 12mm plywood, with clean, sealed edges that require no sanding.'
               },
              
               {
                 title: 'Photo Frames',
                 desc: 'Premium plymount and glass frames that celebrate your most cherished moments.',
-                img: '/expertise-4.webp'
+                img: '/expertise-4.webp',
+                moreInfo: 'Handcrafted photo frames available in multiple finishes including natural wood, matte black, and gold-trimmed. Each frame features precision-cut backing and shatter-resistant glass.'
               }
             ].map((item, i) => (
               <div key={i} className="card-container" style={{ perspective: '1000px', height: '540px' }}>
