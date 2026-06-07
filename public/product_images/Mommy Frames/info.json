@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Couple",
+    "description": "Elegant laser-etched wood frame capturing the essence of togetherness.",
+    "price": 1590,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "WF-01.jpg",
+    "specifications": {
+      "Material": "Premium Walnut Wood",
+      "Size": "12 x 12 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-01"
+  },
+  {
+    "name": "Family",
+    "description": "Multi-layered family tree design in premium walnut finish.",
+    "price": 3500,
+    "salePrice": 0,
+    "mainImage": "WF-03.jpg",
+    "specifications": {
+      "Material": "Layered Birch Wood",
+      "Size": "18 x 24 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-15"
+  }
+]

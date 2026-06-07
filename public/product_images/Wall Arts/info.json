@@ -1,0 +1,171 @@
+[
+  {
+    "name": "Wall Art Design 01",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 02",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 03",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 04",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 05",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "05.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 06",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "06.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 07",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "07.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 08",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "08.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 09",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "09.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 10",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "10.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 11",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "11.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 12",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "12.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  },
+  {
+    "name": "Wall Art Design 13",
+    "description": "Premium laser-cut wooden wall art design.",
+    "price": 2990,
+    "mainImage": "13.jpg",
+    "specifications": {
+      "Material": "Premium Wood",
+      "Size": "12 x 18 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  }
+]

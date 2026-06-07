@@ -1,0 +1,113 @@
+# 📖 Owner's Guide: Managing Products, Gallery, & Discounts
+
+Welcome to your "Art of Frames" content management guide! The entire website is designed to be **dynamic and code-free**, meaning you can manage your shop, gallery, and sales simply by creating folders, adding images, and editing simple text files.
+
+---
+
+## 🛍️ Part 1: How to Add & Edit Products
+
+The products page is powered by the folders inside `public/product_images/`. 
+
+### Step-by-Step Instructions
+
+1.  **Open the directory:** Navigate to `public/product_images/`.
+2.  **Create or Open a Category Folder:** 
+    *   If adding to an existing category, open its folder (e.g., `Mommy Frames`).
+    *   If creating a brand new category, create a new folder (e.g., `Custom Engravings`). The folder name will automatically become the category name on the website!
+3.  **Place the Images:**
+    *   Drop your product images (JPG, PNG, or WebP) directly into this folder.
+4.  **Edit `info.json`:**
+    *   Every product folder must contain an `info.json` file. Open this file and append your new product block.
+    *   Here is the exact schema to copy and paste:
+
+```json
+  {
+    "name": "My New Frame Name",
+    "description": "Write a beautiful description of your premium laser-cut frame here.",
+    "price": 3200,
+    "mainImage": "my-main-photo.jpg",
+    "specifications": {
+      "Material": "Premium Mahogany Wood",
+      "Size": "12 x 16 inches",
+      "Finish": "Semi-Gloss Lacquer"
+    },
+    "secondaryImages": [
+      "extra-photo-1.jpg",
+      "extra-photo-2.jpg"
+    ],
+    "status": "In Stock",
+    "createdAt": "2026-05-27"
+  }
+```
+
+### Key Rules for Products:
+*   `mainImage` must match the exact filename of the image in that folder (e.g., `WF-01.jpg`).
+*   `secondaryImages` is an optional list of extra images showing different angles. Keep it empty (`[]`) if you only have one photo.
+*   `status` can be `"In Stock"`, `"Sold Out"`, or `"Inactive"` (hides it from the store).
+*   `createdAt` is an optional date string in `YYYY-MM-DD` format (e.g., `"2026-05-27"`). Adding this enables accurate sorting by "Newest/Oldest" on the shop. If omitted, the product defaults to the oldest date.
+
+---
+
+## 🎨 Part 2: How to Add Gallery Items
+
+The gallery showcases your craftsmanship and is incredibly easy to maintain. It lives inside `public/gallery_images/`.
+
+### Step-by-Step Instructions
+
+1.  **Open the directory:** Navigate to `public/gallery_images/`.
+2.  **Create/Open a Category Folder:**
+    *   Create a folder for your gallery section (e.g., `Engraved Plaques`, `Corporate Gifts`). The name of this folder dynamically creates your gallery filter buttons!
+3.  **Drop Your Photos:**
+    *   Drop your high-quality showcase photos directly into this folder.
+    *   Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`.
+
+*That's it!* The website automatically detects the new images and categories, builds the filter buttons, and displays them beautifully in a masonry grid.
+
+---
+
+## 💸 Part 3: How to Set Up Discounts
+
+Your site features a powerful **3-Tier cascading discount engine**. Discounts update all prices and append a premium floating red **"SALE"** badge automatically.
+
+### Level 1: Global Sale (Lowest Priority)
+Apply a site-wide discount across **every single product** in your store.
+*   Open the file: `public/global-config.json`
+*   Set your percentage discount:
+    ```json
+    {
+      "globalDiscount": 10
+    }
+    ```
+    *(Set back to `0` to end the store-wide sale).*
+
+### Level 2: Category Sale (Medium Priority)
+Apply a discount to an **entire category folder** only.
+*   Create a file named `category-config.json` inside the specific folder (e.g., `public/product_images/Mommy Frames/category-config.json`).
+*   Add the percentage:
+    ```json
+    {
+      "categoryDiscount": 15
+    }
+    ```
+    *(This will override the global sale for only this category).*
+
+### Level 3: Individual Product Sale (Highest Priority)
+Discount a **single item** within an `info.json` list. You have two methods:
+
+*   **Option A (Percentage Discount):** Add `"discount": 25` to the product object.
+*   **Option B (Fixed Sale Price):** Add `"salePrice": 1500` to force a specific discounted price.
+    ```json
+    {
+      "name": "Couple",
+      "price": 1590,
+      "discount": 20, // 20% off
+      "mainImage": "WF-01.jpg"
+    }
+    ```
+    *(Individual product settings override both Category and Global sales).*
+
+---
+
+## 💡 Quick Tips for Best Visuals
+*   **Image Sizes:** Try to keep product and gallery images relatively square or in standard aspect ratios (like 4:3 or 16:9) to keep the grid perfectly clean.
+*   **Compression:** Before uploading images, run them through an online image optimizer (like [tinypng.com](https://tinypng.com/)) so your pages load instantly for users on mobile connections.
