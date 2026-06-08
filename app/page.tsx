@@ -541,32 +541,33 @@ export default function Home() {
                 img: '/expertise-4.webp'
               }
             ].map((item, i) => (
-              <div key={i} className="card-container" style={{ height: '540px' }}>
+              <div key={i} className="card-container" style={{ height: '100%' }}>
                 <div
                   className="expertise-card"
                   style={{
                     width: '100%',
                     height: '100%',
-                    borderRadius: '40px',
+                    borderRadius: '30px',
                     overflow: 'hidden',
                     background: 'var(--glass-bg)',
                     border: '1px solid var(--glass-border)',
                     display: 'flex',
                     flexDirection: 'column'
                   }}>
-                  <div style={{ position: 'relative', height: '260px', width: '100%', overflow: 'hidden' }}>
-                    <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 1', overflow: 'hidden' }}>
+                    <Image src={item.img} alt={item.title} fill style={{ objectFit: 'cover', transition: 'transform 0.6s ease' }} className="card-image" />
                     <div style={{
                       position: 'absolute',
                       bottom: 0,
                       width: '100%',
-                      height: '60%',
+                      height: '50%',
                       background: 'linear-gradient(to top, var(--background), transparent)'
                     }}></div>
-                  </div>                    <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '0.8rem', color: 'var(--foreground)' }}>{item.title}</h3>
-                      <p style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.6, flex: 1 }}>{item.desc}</p>
-                    </div>
+                  </div>
+                  <div style={{ padding: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--foreground)' }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.85rem', lineHeight: 1.6, opacity: 0.6 }}>{item.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -594,9 +595,12 @@ export default function Home() {
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
           }
           .expertise-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: var(--primary) !important;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+          }
+          .expertise-card:hover .card-image {
+            transform: scale(1.08);
           }
 
         `}</style>

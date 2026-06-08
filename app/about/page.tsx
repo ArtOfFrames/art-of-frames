@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Award, Gem, HeartHandshake, Sparkles, Target, Users } from 'lucide-react';
 
@@ -39,23 +40,41 @@ export default function AboutPage() {
           </div>
 
           <div className="about-hero-visual">
-            <div className="hero-visual-frame">
-              <div className="visual-glow"></div>
-              <div className="visual-stats">
-                <div className="stat-item">
-                  <span className="stat-number">500+</span>
+            <div className="hero-stats-panel">
+              <div className="stats-panel-glow"></div>
+              <div className="stats-panel-header">
+                <span className="stats-panel-accent"></span>
+                <span className="stats-panel-tag">By the Numbers</span>
+              </div>
+              <div className="stats-panel-body">
+                <div className="stat-block">
+                  <div className="stat-block-top">
+                    <svg className="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span className="stat-number">500+</span>
+                  </div>
                   <span className="stat-label">Happy Clients</span>
                 </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <span className="stat-number">3K+</span>
+                <div className="stat-block-divider"></div>
+                <div className="stat-block">
+                  <div className="stat-block-top">
+                    <svg className="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    <span className="stat-number">3K+</span>
+                  </div>
                   <span className="stat-label">Projects Delivered</span>
                 </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <span className="stat-number">8+</span>
+                <div className="stat-block-divider"></div>
+                <div className="stat-block">
+                  <div className="stat-block-top">
+                    <svg className="stat-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span className="stat-number">8+</span>
+                  </div>
                   <span className="stat-label">Years Experience</span>
                 </div>
+              </div>
+              <div className="stats-panel-footer">
+                <span className="stats-footer-dot"></span>
+                <span className="stats-footer-dot"></span>
+                <span className="stats-footer-dot"></span>
               </div>
             </div>
           </div>
@@ -68,16 +87,13 @@ export default function AboutPage() {
           <div className="story-grid">
             <div className="story-visual">
               <div className="story-image-frame glass">
-                <div className="story-placeholder">
-                  <Sparkles size={48} className="story-icon" />
-                </div>
-              </div>
-              <div className="story-floating-card glass">
-                <Gem size={24} className="floating-icon" />
-                <div>
-                  <strong>Premium Materials</strong>
-                  <p>Sourced from the finest suppliers worldwide</p>
-                </div>
+                <Image
+                  src="/expertise-1.webp"
+                  alt="Custom laser-cut products showcase"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="story-image"
+                />
               </div>
             </div>
             <div className="story-content">
@@ -233,8 +249,8 @@ export default function AboutPage() {
               </p>
               <ul className="craft-list">
                 {[
-                  'Industrial-grade CO2 & Fiber laser systems',
-                  'Materials: Wood, Acrylic, Leather, Glass, Metal & more',
+                  'Advanced diode laser systems for precision cutting & engraving',
+                  'Materials: Wood, cardboard, paper, leather & more',
                   'Custom design & personalization services',
                   'Bulk & corporate order capabilities',
                   'Fast turnaround without compromising quality',
@@ -249,12 +265,14 @@ export default function AboutPage() {
             </div>
             <div className="craft-visual">
               <div className="craft-image-frame glass">
-                <div className="craft-placeholder">
-                  <Award size={64} className="craft-award-icon" />
-                </div>
-                <div className="craft-badge">
-                  <span className="badge-text">Premium Quality</span>
-                </div>
+                <Image
+                  src="/expertise-2.webp"
+                  alt="Laser engraving craftsmanship"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="craft-image"
+                />
+
               </div>
             </div>
           </div>
@@ -446,70 +464,141 @@ export default function AboutPage() {
           transform: translateY(-5px);
         }
 
-        /* Hero Visual */
+        /* Hero Visual - Redesigned Stats Panel */
         .about-hero-visual {
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
-        .hero-visual-frame {
+        .hero-stats-panel {
           position: relative;
           width: 100%;
-          max-width: 500px;
-          aspect-ratio: 4/5;
-          background: var(--glass-bg);
-          border: 1px solid var(--glass-border);
-          border-radius: 40px;
-          display: flex;
-          align-items: flex-end;
-          padding: 2.5rem;
+          max-width: 460px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(212,175,55,0.02) 100%);
+          border: 1px solid rgba(212,175,55,0.2);
+          border-radius: 36px;
+          padding: 3rem 2.5rem;
           overflow: hidden;
+          backdrop-filter: blur(20px);
+          transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .hero-stats-panel:hover {
+          border-color: rgba(212,175,55,0.4);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+          transform: translateY(-4px);
         }
 
-        .visual-glow {
+        .stats-panel-glow {
           position: absolute;
-          top: 50%;
+          top: -20%;
           left: 50%;
-          transform: translate(-50%, -50%);
-          width: 300px;
-          height: 300px;
-          background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+          transform: translateX(-50%);
+          width: 350px;
+          height: 350px;
+          background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
           border-radius: 50%;
-          filter: blur(60px);
+          filter: blur(80px);
+          pointer-events: none;
         }
 
-        .visual-stats {
+        .stats-panel-header {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 2.5rem;
+          position: relative;
+          z-index: 2;
+        }
+        .stats-panel-accent {
+          width: 3px;
+          height: 20px;
+          background: var(--primary);
+          border-radius: 10px;
+        }
+        .stats-panel-tag {
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          color: var(--primary);
+          opacity: 0.8;
+        }
+
+        .stats-panel-body {
           position: relative;
           z-index: 2;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 0;
           width: 100%;
         }
 
-        .stat-item {
+        .stat-block {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
+          gap: 0.4rem;
+          padding: 1.5rem 0;
+          transition: all 0.3s ease;
+        }
+        .stat-block:hover {
+          padding-left: 0.5rem;
+        }
+        .stat-block-top {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .stat-icon {
+          color: var(--primary);
+          opacity: 0.6;
+          flex-shrink: 0;
         }
         .stat-number {
-          font-size: 2.5rem;
+          font-size: 3rem;
           font-weight: 900;
           font-family: var(--font-heading);
+          color: var(--foreground);
+          letter-spacing: -2px;
+          line-height: 1;
+        }
+        .stat-block:hover .stat-number {
           color: var(--primary);
-          letter-spacing: -1px;
         }
         .stat-label {
           font-size: 0.8rem;
           opacity: 0.5;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 3px;
+          font-weight: 600;
+          margin-left: 2.25rem;
         }
-        .stat-divider {
+        .stat-block-divider {
           width: 100%;
           height: 1px;
-          background: var(--glass-border);
+          background: linear-gradient(to right, rgba(212,175,55,0.3), transparent);
+        }
+
+        .stats-panel-footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 2rem;
+          position: relative;
+          z-index: 2;
+        }
+        .stats-footer-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: var(--primary);
+          opacity: 0.25;
+        }
+        .stats-footer-dot:nth-child(2) {
+          opacity: 0.5;
+          width: 25px;
+          border-radius: 10px;
         }
 
         /* ==============================
@@ -555,19 +644,11 @@ export default function AboutPage() {
           position: relative;
         }
 
-        .story-placeholder {
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          background: rgba(212,175,55,0.08);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--primary);
-          opacity: 0.4;
+        .story-image {
+          transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .story-icon {
-          animation: pulse-glow 3s ease-in-out infinite;
+        .story-image-frame:hover .story-image {
+          transform: scale(1.08);
         }
 
         .story-floating-card {
@@ -827,7 +908,7 @@ export default function AboutPage() {
         .craft-image-frame {
           width: 100%;
           max-width: 400px;
-          aspect-ratio: 1;
+          aspect-ratio: 3/4;
           border-radius: 40px;
           display: flex;
           align-items: center;
@@ -836,36 +917,13 @@ export default function AboutPage() {
           overflow: hidden;
         }
 
-        .craft-placeholder {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          gap: 1rem;
+        .craft-image {
+          transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .craft-award-icon {
-          color: var(--primary);
-          opacity: 0.3;
+        .craft-image-frame:hover .craft-image {
+          transform: scale(1.08);
         }
 
-        .craft-badge {
-          position: absolute;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
-          background: rgba(212,175,55,0.15);
-          backdrop-filter: blur(10px);
-          padding: 0.8rem 2rem;
-          border-radius: 100px;
-          border: 1px solid rgba(212,175,55,0.3);
-        }
-        .badge-text {
-          color: var(--primary);
-          font-weight: 700;
-          font-size: 0.85rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-        }
 
         /* ==============================
            CTA SECTION
@@ -1015,11 +1073,18 @@ export default function AboutPage() {
             font-size: 2.2rem;
           }
           .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
           }
-          .hero-visual-frame {
+          .hero-stats-panel {
             max-width: 350px;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+          }
+          .stat-label {
+            margin-left: 1.75rem;
+            font-size: 0.7rem;
+          }
+          .stat-block {
+            padding: 1rem 0;
           }
           .craft-image-frame {
             max-width: 300px;
