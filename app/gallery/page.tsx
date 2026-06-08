@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import { unstable_noStore as noStore } from 'next/cache';
 import GalleryView from './GalleryView';
 
@@ -7,29 +5,23 @@ export const dynamic = 'force-dynamic';
 
 export default async function GalleryPage() {
   noStore();
-  const galleryDir = path.join(process.cwd(), 'public', 'gallery_images');
   
-  // Ensure directory exists
-  if (!fs.existsSync(galleryDir)) {
-    fs.mkdirSync(galleryDir, { recursive: true });
-  }
-
-  const categories = fs.readdirSync(galleryDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
-
-  const galleryData: Record<string, string[]> = {};
-
-  categories.forEach(category => {
-    const categoryPath = path.join(galleryDir, category);
-    const files = fs.readdirSync(categoryPath)
-      .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
-      .map(file => `/gallery_images/${category}/${file}`);
+  let categories: string[] = [];
+  let galleryData: Record<string, string[]> = {};
+  
+  try {
+    const res = await fetch('/api/gallery/data', { 
+      cache: 'no-store',
+    });
     
-    if (files.length > 0) {
-      galleryData[category] = files;
+    if (res.ok) {
+      const data = await res.json();
+      categories = data.categories || [];
+      galleryData = data.galleryData || {};
     }
-  });
+  } catch (e) {
+    console.error('Failed to fetch gallery data:', e);
+  }
 
   return <GalleryView categories={categories} galleryData={galleryData} />;
 }
