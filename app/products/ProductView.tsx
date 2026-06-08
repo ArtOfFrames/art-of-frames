@@ -21,12 +21,10 @@ export interface Product {
   createdAt?: string;
 }
 
-interface ProductViewProps {
-  initialProducts: Product[];
-  categories: string[];
-}
-
-export default function ProductView({ initialProducts, categories }: ProductViewProps) {
+export default function ProductView() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>(['All']);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -39,6 +37,25 @@ export default function ProductView({ initialProducts, categories }: ProductView
   const addTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { addToCart } = useCart();
   const searchParams = useSearchParams();
+
+  // Fetch data from API on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('/api/products/data', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setProducts(data.products || []);
+          setCategories(['All', ...(data.categories?.filter((c: string) => c !== 'All') || [])]);
+        }
+      } catch (e) {
+        console.error('Failed to fetch products:', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
 
   // Build hierarchical category groups from flat categories list
   const categoryGroups = useMemo(() => {
@@ -86,13 +103,13 @@ export default function ProductView({ initialProducts, categories }: ProductView
   useEffect(() => {
     const focusId = searchParams?.get('focus');
     if (focusId) {
-      const product = initialProducts.find(p => p.id === focusId);
+      const product = products.find(p => p.id === focusId);
       if (product) {
         setSelectedProduct(product);
         setCurrentImageIndex(0);
       }
     }
-  }, [searchParams, initialProducts]);
+  }, [searchParams, products]);
 
   useEffect(() => {
     return () => {
@@ -102,7 +119,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
 
   const filteredProducts = useMemo(() => {
     // 1. Filter by category
-    let result = initialProducts;
+    let result = products;
     if (activeCategory !== 'All') {
       // Hierarchical filter: parent shows its own products AND its subcategory products
       result = result.filter(p => 
@@ -138,7 +155,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
       }
       return 0;
     });
-  }, [activeCategory, searchQuery, sortBy, initialProducts]);
+  }, [activeCategory, searchQuery, sortBy, products]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -168,7 +185,17 @@ export default function ProductView({ initialProducts, categories }: ProductView
     setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 
-  if (initialProducts.length === 0) {
+  if (loading) {
+    return (
+      <main className="products-page">
+        <div className="container empty-state" style={{ textAlign: 'center', paddingTop: '120px' }}>
+          <p>Loading products...</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (products.length === 0) {
     return (
       <main className="products-page">
         <div className="container empty-state">
@@ -256,14 +283,14 @@ export default function ProductView({ initialProducts, categories }: ProductView
                   onClick={() => setActiveCategory('All')}
                 >
                   <span className="sidebar-btn-name">All</span>
-                  <span className="sidebar-btn-count">{initialProducts.length}</span>
+                  <span className="sidebar-btn-count">{products.length}</span>
                 </button>
                 {categoryGroups.map(group => {
                   const count = group.children.length > 0
-                    ? initialProducts.filter(p => 
+                    ? products.filter(p => 
                         p.category === group.parent || group.children.includes(p.category)
                       ).length
-                    : initialProducts.filter(p => p.category === group.parent).length;
+                    : products.filter(p => p.category === group.parent).length;
                   const isActive = activeCategory === group.parent || group.children.includes(activeCategory);
                   const isExpanded = expandedParents[group.parent] ?? false;
                   const hasChildren = group.children.length > 0;
@@ -302,7 +329,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
                             >
                               <span>{child.includes(' / ') ? child.split(' / ').pop() : child}</span>
                               <span className="sidebar-btn-count">{
-                                initialProducts.filter(p => p.category === child).length
+                                products.filter(p => p.category === child).length
                               }</span>
                             </button>
                           ))}

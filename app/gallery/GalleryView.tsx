@@ -1,13 +1,41 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import GalleryGrid from './GalleryGrid';
 
-interface GalleryViewProps {
-  categories: string[];
-  galleryData: Record<string, string[]>;
-}
+export default function GalleryView() {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [galleryData, setGalleryData] = useState<Record<string, string[]>>({});
+  const [loading, setLoading] = useState(true);
 
-export default function GalleryView({ categories, galleryData }: GalleryViewProps) {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('/api/gallery/data', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data.categories || []);
+          setGalleryData(data.galleryData || {});
+        }
+      } catch (e) {
+        console.error('Failed to fetch gallery data:', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="gallery-page">
+        <div className="container" style={{ textAlign: 'center', paddingTop: '120px' }}>
+          <p>Loading gallery...</p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="gallery-page">
       <div className="gallery-layout container">
