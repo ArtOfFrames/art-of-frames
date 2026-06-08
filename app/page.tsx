@@ -133,7 +133,7 @@ export default function Home() {
   }, [handleNext, handlePrev, resetTimer]);
 
   return (
-    <div className="home-page" style={{ position: 'relative', overflow: 'hidden' }}>
+    <main className="home-page">
 
       {/* Dynamic Hero Section - Reference Inspired */}
       <section className="hero" style={{
@@ -263,6 +263,17 @@ export default function Home() {
         </div>
 
         <style jsx>{`
+        .home-page::before {
+          content: '';
+          position: fixed;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle at 30% 40%, rgba(212,175,55,0.04) 0%, transparent 50%);
+          pointer-events: none;
+          z-index: 0;
+        }
           .hero-product-display {
             position: relative;
             width: 100%;
@@ -507,13 +518,12 @@ export default function Home() {
       <section id="expertise" className="section-padding" style={{
         position: 'relative',
         zIndex: 100,
-        background: 'var(--background)',
-        borderTop: '1px solid var(--glass-border)'
+        background: 'var(--background)'
       }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
-          <div style={{ textAlign: 'left', marginBottom: '4rem' }}>
-            <h2 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-elegant)', fontWeight: 400, letterSpacing: '-2px' }}>
-              Expertise <span style={{ color: 'var(--primary)' }}>/</span>
+        <div className="container">
+          <div className="expertise-header">
+            <h2 className="section-title-lg">
+              Expertise <span className="gold-dot">/</span>
             </h2>
           </div>
 
@@ -575,6 +585,20 @@ export default function Home() {
         </div>
 
         <style jsx>{`
+
+          .expertise-header {
+            text-align: left;
+            margin-bottom: 4rem;
+          }
+          .section-title-lg {
+            font-size: 3.5rem;
+            font-family: var(--font-elegant);
+            font-weight: 400;
+            letter-spacing: -2px;
+          }
+          .gold-dot {
+            color: var(--primary);
+          }
           .expertise-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -583,6 +607,11 @@ export default function Home() {
           @media (max-width: 1200px) {
             .expertise-grid {
               grid-template-columns: repeat(2, 1fr);
+            }
+          }
+          @media (max-width: 768px) {
+            .section-title-lg {
+              font-size: 2.8rem;
             }
           }
           @media (max-width: 600px) {
@@ -609,19 +638,17 @@ export default function Home() {
       <section id="works" className="section-padding" style={{
         position: 'relative',
         zIndex: 100,
-        background: 'var(--background)',
-        paddingTop: '6rem',
-        paddingBottom: '6rem'
+        background: 'var(--background)'
       }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '5rem' }}>
-            <div>
-              <div style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.8rem', letterSpacing: '4px', marginBottom: '1rem', textTransform: 'uppercase' }}>Portfolio Showcase</div>
-              <h2 style={{ fontSize: '4.5rem', fontFamily: 'var(--font-elegant)', fontWeight: 400, letterSpacing: '-3px', lineHeight: 1 }}>
-                Our Works <span style={{ color: 'var(--primary)' }}>/</span>
+        <div className="container">
+          <div className="works-header">
+            <div className="works-header-left">
+              <div className="works-supertitle">Portfolio Showcase</div>
+              <h2 className="works-title">
+                Our Works <span className="gold-dot">/</span>
               </h2>
             </div>
-            <p style={{ opacity: 0.4, maxWidth: '350px', fontSize: '0.9rem', lineHeight: 1.6, textAlign: 'right' }}>
+            <p className="works-sub-desc">
               Precision meets artistry. Explore our latest laser-crafted masterpieces.
             </p>
           </div>
@@ -717,6 +744,34 @@ export default function Home() {
         </div>
 
         <style jsx>{`
+          .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 5rem;
+          }
+          .works-supertitle {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+          }
+          .works-title {
+            font-size: 4.5rem;
+            font-family: var(--font-elegant);
+            font-weight: 400;
+            letter-spacing: -3px;
+            line-height: 1;
+          }
+          .works-sub-desc {
+            opacity: 0.4;
+            max-width: 350px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            text-align: right;
+          }
           .works-bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -785,25 +840,34 @@ export default function Home() {
             .works-bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 350px; }
             .col-span-8, .col-span-4 { grid-column: span 1; }
             .row-span-2, .row-span-1 { grid-row: span 1; }
+            .works-header {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 1rem;
+            }
+            .works-sub-desc {
+              text-align: left;
+              max-width: 100%;
+            }
           }
           @media (max-width: 768px) {
             .works-bento-grid { grid-template-columns: 1fr; }
             .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-            h2 { fontSize: 3rem !important; }
+            .works-title {
+              font-size: 3rem;
+            }
             .work-content-overlay { padding: 1.5rem; }
           }
         `}</style>
       </section>
 
       {/* Bulk Orders CTA Section - Embedded Quote Form */}
-      <section className="bulk-cta-section" style={{
+      <section className="bulk-cta-section section-padding" style={{
         position: 'relative',
         zIndex: 100,
-        background: 'var(--background)',
-        padding: '6rem 0',
-        borderTop: '1px solid var(--glass-border)'
+        background: 'var(--background)'
       }}>
-        <div className="container" style={{ maxWidth: '1400px' }}>
+        <div className="container">
           <div className="bulk-cta-card glass">
             <div className="bulk-content">
               <div className="bulk-text">
@@ -1009,22 +1073,18 @@ export default function Home() {
       </section>
 
       {/* Reviews Section - Auto-floating marquee */}
-      <section id="reviews" style={{
+      <section id="reviews" className="section-padding" style={{
         position: 'relative',
         zIndex: 100,
         background: 'var(--background)',
-        padding: '6rem 0',
-        overflow: 'hidden',
-        borderTop: '1px solid var(--glass-border)'
+        overflow: 'hidden'
       }}>
         {/* Section Header */}
-        <div className="container" style={{ maxWidth: '1400px', marginBottom: '4rem' }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.8rem', letterSpacing: '4px', marginBottom: '1rem', textTransform: 'uppercase' }}>
-              What People Say
-            </div>
-            <h2 style={{ fontSize: '4rem', fontFamily: 'var(--font-elegant)', fontWeight: 400, letterSpacing: '-2px', lineHeight: 1 }}>
-              Client Reviews <span style={{ color: 'var(--primary)' }}>/</span>
+        <div className="container section-container reviews-header-container">
+          <div className="reviews-header">
+            <div className="reviews-supertitle">What People Say</div>
+            <h2 className="reviews-title">
+              Client Reviews <span className="gold-dot">/</span>
             </h2>
           </div>
         </div>
@@ -1084,6 +1144,27 @@ export default function Home() {
         </div>
 
         <style jsx>{`
+          .reviews-header-container {
+            margin-bottom: 4rem;
+          }
+          .reviews-header {
+            text-align: center;
+          }
+          .reviews-supertitle {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+          }
+          .reviews-title {
+            font-size: 4rem;
+            font-family: var(--font-elegant);
+            font-weight: 400;
+            letter-spacing: -2px;
+            line-height: 1;
+          }
           .reviews-track-wrapper {
             width: 100%;
             overflow: hidden;
@@ -1129,12 +1210,12 @@ export default function Home() {
             .reviews-track {
               animation-duration: 30s;
             }
-            h2 {
-              font-size: 2.8rem !important;
+            .reviews-title {
+              font-size: 2.8rem;
             }
           }
         `}</style>
       </section>
-    </div>
+    </main>
   );
 }

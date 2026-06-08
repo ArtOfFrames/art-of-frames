@@ -80,8 +80,8 @@ export default function ContactPage() {
         
         {/* Left Column: Hero Text & Direct Contacts */}
         <div className="contact-content-left">
-          <span className="subtitle">Let&apos;s Connect</span>
-          <h1 className="title">Frame Your<br/>Moments<span className="gold-slash">.</span></h1>
+          <span className="section-subtitle">Let&apos;s Connect</span>
+          <h1 className="title">Frame Your<br/>Moments<span className="gold-accent">.</span></h1>
           <p className="description">
             Looking for a custom design, corporate gifting, or just have a question? 
             Send us a message directly to our inbox or connect instantly via WhatsApp.
@@ -216,7 +216,7 @@ export default function ContactPage() {
 
       <style jsx>{`
         .contact-page {
-          padding: 140px 0 100px;
+          padding: 140px 0 var(--section-gap-lg);
           min-height: 100vh;
           background: var(--background);
           position: relative;
@@ -239,7 +239,7 @@ export default function ContactPage() {
         .contact-container {
           display: grid;
           grid-template-columns: 1fr 1.2fr;
-          gap: 6rem;
+          gap: var(--space-12);
           position: relative;
           z-index: 10;
         }
@@ -250,15 +250,6 @@ export default function ContactPage() {
           flex-direction: column;
           justify-content: center;
         }
-        .subtitle {
-          color: var(--primary);
-          font-weight: 800;
-          font-size: 0.85rem;
-          letter-spacing: 5px;
-          text-transform: uppercase;
-          margin-bottom: 1.5rem;
-          display: inline-block;
-        }
         .title {
           font-size: clamp(3.5rem, 6vw, 5rem);
           font-family: var(--font-elegant);
@@ -268,12 +259,11 @@ export default function ContactPage() {
           margin-bottom: 2rem;
           color: var(--foreground);
         }
-        .gold-slash { color: var(--primary); }
         .description {
           font-size: 1.15rem;
           line-height: 1.8;
           opacity: 0.6;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
           max-width: 450px;
         }
 
@@ -440,7 +430,7 @@ export default function ContactPage() {
           .info-card:hover { transform: translateY(-5px); }
         }
         @media (max-width: 768px) {
-          .contact-page { padding: 110px 0 60px; }
+          .contact-page { padding: 110px 0 var(--section-gap); }
           .title { font-size: 3rem; }
           .form-glass-container { padding: 2rem; border-radius: 24px; }
           .form-row { grid-template-columns: 1fr; }

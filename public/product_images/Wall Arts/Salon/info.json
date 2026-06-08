@@ -1,0 +1,119 @@
+[
+  {
+    "name": "01",
+    "description": "Circular wooden wall clock featuring a laser-cut female profile silhouette with salon styling tools.",
+    "price": 1800,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "02",
+    "description": "A collection of twenty distinct black vector silhouettes displaying trendy men's hairstyles and beards.",
+    "price": 1800,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "12\" X 18\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "03",
+    "description": "Three-panel rectangular black metal wall art set showcasing modern bearded men's profiles.",
+    "price": 5500,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Metal / Acrylic",
+      "Size": "12\" X 24\" x 3"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "04",
+    "description": "Bold black silhouette of a stylish bearded man wearing sunglasses with voluminous hair.",
+    "price": 2800,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "12\" X 30\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "05",
+    "description": "Circular black cutout wall sign depicting a professional male barber holding tools.",
+    "price": 4800,
+    "mainImage": "05.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "24\" X 24\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "06",
+    "description": "Modern black wall clock featuring a female silhouette, hair dryer, combs, and floral details.",
+    "price": 4800,
+    "mainImage": "06.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "24\" X 24\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "07",
+    "description": "Personalized black salon sign featuring combs and scissors flanking customizable Sophia text.",
+    "price": 4800,
+    "mainImage": "07.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "30\" X 36\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "08",
+    "description": "Abstract geometric triangular framework containing stylized barber icons and a bearded face.",
+    "price": 4800,
+    "mainImage": "08.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "30\" X 36\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "09",
+    "description": "Creative Barber script sign integrated with an electric hair clipper, scissors, and comb.",
+    "price": 4800,
+    "mainImage": "09.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "36\" X 36\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

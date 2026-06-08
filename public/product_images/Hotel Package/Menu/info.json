@@ -1,0 +1,93 @@
+[
+  {
+    "name": "QR Menu Stand",
+    "description": "Vertical laser engraved wooden QR code table sign with base",
+    "price": 650,
+    "mainImage": "650(1).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "QR Table Sign",
+    "description": "Laser engraved wooden QR menu display with contrasting dark wood base",
+    "price": 650,
+    "mainImage": "650_2.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Floating QR Menu",
+    "description": "Unique laser cut acrylic and wood layered floating QR stand",
+    "price": 950,
+    "mainImage": "950.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Horizontal QR Display",
+    "description": "Wide tabletop laser engraved wooden menu display with logo and wifi space",
+    "price": 1100,
+    "mainImage": "1100.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Menu Clipboard",
+    "description": "Premium laser cut wooden clipboard for replaceable printed restaurant menus",
+    "price": 1900,
+    "mainImage": "1900.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Engraved Menu Board",
+    "description": "Full size laser engraved wooden cocktail and drinks menu board",
+    "price": 2800,
+    "mainImage": "2800_3.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Folding Menu Book",
+    "description": "Elegant folding wooden menu cover with laser engraved text and flexible spine",
+    "price": 3200,
+    "mainImage": "3200.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

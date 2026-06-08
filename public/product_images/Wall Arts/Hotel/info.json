@@ -1,0 +1,67 @@
+[
+  {
+    "name": "01",
+    "description": "Artistic kitchen wall sign combining cutout spoon, fork, and knife motifs with bold text display.",
+    "price": 2500,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "12\" X 24\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "02",
+    "description": "Charming coffee mug silhouette featuring cozy custom stylized motivational typography integrated within the design.",
+    "price": 1500,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "12\" X 12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "03",
+    "description": "Elegant three-panel vertical wall art showcasing a continuous pouring teapot and coffee cup silhouette.",
+    "price": 2500,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "12\" X 36\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "04",
+    "description": "Beautiful culinary quote wall art featuring a central plate outline and clean decorative script.",
+    "price": 2500,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "12\" X 22\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "05",
+    "description": "Intricate cooking pot silhouette adorned with elegant floral details and sticking out kitchen utensils.",
+    "price": 1500,
+    "mainImage": "05.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "12\" X 12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

@@ -405,17 +405,6 @@ export default function ResellerPage() {
           overflow: hidden;
         }
 
-        /* --- Shared --- */
-        .section-subtitle {
-          color: var(--primary);
-          font-weight: 800;
-          font-size: 0.8rem;
-          letter-spacing: 5px;
-          text-transform: uppercase;
-          margin-bottom: 1.2rem;
-          display: inline-block;
-        }
-
         .section-title {
           font-size: clamp(2.5rem, 5vw, 4rem);
           font-family: var(--font-elegant);
@@ -424,57 +413,6 @@ export default function ResellerPage() {
           line-height: 1;
           margin-bottom: 1.5rem;
           color: var(--foreground);
-        }
-
-        .gold-accent {
-          color: var(--primary);
-        }
-
-        .primary-btn {
-          background: var(--primary);
-          color: black;
-          border: none;
-          padding: 1.2rem 2.5rem;
-          border-radius: 100px;
-          font-weight: 800;
-          letter-spacing: 2px;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          display: flex;
-          align-items: center;
-          gap: 0.8rem;
-          font-size: 0.9rem;
-        }
-        .primary-btn:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
-        }
-        .primary-btn .btn-arrow {
-          transition: transform 0.3s ease;
-        }
-        .primary-btn:hover .btn-arrow {
-          transform: translateX(5px);
-        }
-
-        .outline-btn {
-          background: transparent;
-          color: var(--foreground);
-          border: 1px solid var(--glass-border);
-          padding: 1.2rem 2.5rem;
-          border-radius: 100px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          cursor: pointer;
-          transition: all 0.4s ease;
-          font-size: 0.9rem;
-          display: flex;
-          align-items: center;
-          gap: 0.8rem;
-        }
-        .outline-btn:hover {
-          border-color: var(--primary);
-          color: var(--primary);
-          transform: translateY(-5px);
         }
 
         /* ==============================
@@ -612,13 +550,13 @@ export default function ResellerPage() {
            BENEFITS SECTION
            ============================== */
         .benefits-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .benefits-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
         }
 
         .benefits-sub-desc {
@@ -632,7 +570,7 @@ export default function ResellerPage() {
         .benefits-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: var(--grid-gap);
         }
 
         .benefit-card {
@@ -682,14 +620,14 @@ export default function ResellerPage() {
            HOW IT WORKS
            ============================== */
         .how-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
           position: relative;
         }
 
         .how-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
         }
 
         .how-steps {
@@ -748,13 +686,13 @@ export default function ResellerPage() {
            PRODUCTS CATALOG
            ============================== */
         .products-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .products-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
         }
 
         .products-sub-desc {
@@ -768,7 +706,7 @@ export default function ResellerPage() {
         .products-categories {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: var(--grid-gap);
         }
 
         .product-cat-card {
@@ -805,14 +743,14 @@ export default function ResellerPage() {
            WHO CAN APPLY
            ============================== */
         .who-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .who-grid {
           display: grid;
           grid-template-columns: 1.2fr 1fr;
-          gap: 5rem;
+          gap: var(--section-gap-lg);
           align-items: center;
         }
 
@@ -887,7 +825,7 @@ export default function ResellerPage() {
            CTA SECTION
            ============================== */
         .reseller-cta-section {
-          padding: 80px 0 100px;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
@@ -1085,7 +1023,7 @@ export default function ResellerPage() {
           }
           .who-grid {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: var(--section-gap);
           }
           .who-content {
             text-align: center;

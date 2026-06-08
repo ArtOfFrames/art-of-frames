@@ -13,6 +13,8 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<'left' | 'right' | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 25;
 
   const categories = useMemo(() => ['All', ...initialCategories], [initialCategories]);
 
@@ -22,6 +24,24 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
     }
     return galleryData[activeCategory] || [];
   }, [activeCategory, galleryData]);
+
+  // Reset to page 1 when category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
+
+  // Paginate
+  const totalPages = Math.max(1, Math.ceil(filteredImages.length / ITEMS_PER_PAGE));
+  const paginatedImages = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredImages.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredImages, currentPage]);
+
+  // Fillers to keep last row balanced (max 4 columns)
+  const fillerCount = useMemo(() => {
+    const remaining = paginatedImages.length % 4;
+    return remaining === 0 ? 0 : 4 - remaining;
+  }, [paginatedImages.length]);
 
   const goNext = useCallback(() => {
     if (selectedIndex === null || isAnimating) return;
@@ -99,38 +119,85 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
   }
 
   return (
-    <div className="gallery-container">
-      {/* Category Filter */}
-      <nav className="category-nav">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`cat-btn ${activeCategory === cat ? 'active' : ''}`}
-            onClick={() => setActiveCategory(cat)}
-          >
-            {cat}
-            {activeCategory === cat && <span className="dot"></span>}
-          </button>
-        ))}
-      </nav>
+    <div className="gallery-layout-wrapper">
+      {/* Sidebar Filters */}
+      <aside className="gallery-sidebar">
+        <h3 className="sidebar-title">Categories</h3>
+        <nav className="sidebar-nav">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`sidebar-btn ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              <span className="sidebar-btn-name">{cat}</span>
+              <span className="sidebar-btn-count">{
+                cat === 'All'
+                  ? Object.values(galleryData).flat().length
+                  : (galleryData[cat] || []).length
+              }</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
 
-      {/* Gallery Grid */}
-      <div className="gallery-grid">
-        {filteredImages.map((src, index) => (
-          <div key={src + index} className="gallery-item" onClick={() => openLightbox(index)}>
-            <div className="img-reveal-wrapper">
-              <Image
-                src={src}
-                alt={`Gallery image ${index}`}
-                fill
-                className="gallery-img"
-                style={{ objectFit: 'cover' }}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+      {/* Main Content */}
+      <div className="gallery-main">
+        {/* Gallery Grid */}
+        <div className="gallery-grid">
+          {paginatedImages.map((src, index) => {
+            const globalIndex = (currentPage - 1) * ITEMS_PER_PAGE + index;
+            return (
+              <div key={src + index} className="gallery-item" onClick={() => openLightbox(globalIndex)}>
+                <div className="img-reveal-wrapper">
+                  <Image
+                    src={src}
+                    alt={`Gallery image ${globalIndex}`}
+                    fill
+                    className="gallery-img"
+                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+          {/* Invisible filler items to keep last row balanced */}
+          {Array.from({ length: fillerCount }).map((_, i) => (
+            <div key={`filler-${i}`} className="gallery-item gallery-item-filler" aria-hidden="true" />
+          ))}
+        </div>
 
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              className="page-btn"
+              disabled={currentPage <= 1}
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            >
+              ← Prev
+            </button>
+            <div className="page-numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  className={`page-num ${currentPage === page ? 'active' : ''}`}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              ))}
             </div>
+            <button
+              className="page-btn"
+              disabled={currentPage >= totalPages}
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            >
+              Next →
+            </button>
           </div>
-        ))}
+        )}
       </div>
 
       {/* Lightbox */}
@@ -182,7 +249,6 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
                 alt={`Gallery image ${selectedIndex + 1}`}
                 fill
                 className="lightbox-image"
-                style={{ objectFit: 'contain' }}
                 sizes="90vw"
                 priority
               />
@@ -193,63 +259,113 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
       )}
 
       <style jsx>{`
-        .gallery-container {
-          display: flex;
-          flex-direction: column;
-          gap: 3rem;
+        /* ==============================
+           SIDEBAR LAYOUT
+           ============================== */
+        .gallery-layout-wrapper {
+          display: grid;
+          grid-template-columns: var(--sidebar-width) 1fr;
+          gap: var(--layout-gap);
+          align-items: start;
         }
 
-        /* Nav Styling */
-        .category-nav {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          margin-bottom: 1rem;
+        /* ==============================
+           SIDEBAR
+           ============================== */
+        .gallery-sidebar {
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: 20px;
+          padding: 1.5rem;
           position: sticky;
           top: 100px;
-          z-index: 50;
-          background: var(--background);
-          padding: 10px 0;
         }
-        .cat-btn {
-          background: transparent;
-          border: 1px solid var(--glass-border);
-          padding: 0.8rem 1.5rem;
-          border-radius: 100px;
-          color: var(--foreground);
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .sidebar-title {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          opacity: 0.5;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid var(--glass-border);
+        }
+        .sidebar-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+        .sidebar-btn {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          text-transform: capitalize;
+          justify-content: space-between;
+          padding: 0.7rem 0.9rem;
+          border: none;
+          border-radius: 10px;
+          background: transparent;
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: left;
+          width: 100%;
+          font-family: inherit;
         }
-        .cat-btn.active {
-          background: var(--primary);
-          border-color: var(--primary);
-          color: black;
-          transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-        }
-        .cat-btn:hover:not(.active) {
-          border-color: var(--primary);
+        .sidebar-btn:hover {
+          background: rgba(212,175,55,0.05);
           color: var(--primary);
         }
-        .dot {
-          width: 6px;
-          height: 6px;
-          background: black;
-          border-radius: 50%;
+        .sidebar-btn.active {
+          background: rgba(212,175,55,0.1);
+          color: var(--primary);
+          font-weight: 700;
+        }
+        .sidebar-btn-name {
+          text-transform: capitalize;
+        }
+        .sidebar-btn-count {
+          font-size: 0.7rem;
+          opacity: 0.4;
+          font-weight: 600;
+          background: var(--glass-bg);
+          padding: 0.15rem 0.5rem;
+          border-radius: 100px;
+        }
+        .sidebar-btn.active .sidebar-btn-count {
+          opacity: 0.8;
+          background: rgba(212,175,55,0.15);
+        }
+
+        /* ==============================
+           MAIN CONTENT
+           ============================== */
+        .gallery-main {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
         }
 
         /* Grid Styling */
         .gallery-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 1.5rem;
-          padding-bottom: 5rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--grid-gap);
+        }
+        @media (max-width: 768px) {
+          .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .gallery-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        .gallery-item-filler {
+          visibility: hidden;
+          pointer-events: none;
         }
         .gallery-item {
           aspect-ratio: 1/1;
@@ -270,6 +386,9 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
           object-fit: cover;
           transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
+        .lightbox-image {
+          object-fit: contain;
+        }
         .gallery-item:hover {
           transform: translateY(-10px);
           border-color: var(--primary);
@@ -277,6 +396,63 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
         }
         .gallery-item:hover .gallery-img {
           transform: scale(1.1);
+        }
+
+        /* ==============================
+           PAGINATION
+           ============================== */
+        .pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          padding-top: 1rem;
+        }
+        .page-btn {
+          padding: 0.6rem 1.2rem;
+          border-radius: 100px;
+          border: 1px solid var(--glass-border);
+          background: var(--glass-bg);
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-family: inherit;
+        }
+        .page-btn:hover:not(:disabled) {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+        .page-btn:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+        .page-numbers {
+          display: flex;
+          gap: 0.3rem;
+        }
+        .page-num {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-family: inherit;
+        }
+        .page-num:hover {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+        .page-num.active {
+          background: var(--primary);
+          color: black;
+          border-color: var(--primary);
         }
 
         /* ==============================
@@ -460,10 +636,6 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
         }
 
         @media (max-width: 768px) {
-          .gallery-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-          }
           .category-nav {
             justify-content: center;
             top: 80px;

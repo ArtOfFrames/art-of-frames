@@ -1,0 +1,223 @@
+[
+  {
+    "name": "1",
+    "description": "Intricate wooden wall clock featuring a geometric patterned face and laser-cut Roman numerals.",
+    "price": 1950,
+    "mainImage": "1950(1).jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "2",
+    "description": "Modern black minimalist wall clock with bold, clean cutout Arabic numerals.",
+    "price": 1950,
+    "mainImage": "1950(2).jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "3",
+    "description": "Simple and elegant wooden wall clock featuring prominent laser-cut 12 and 6 numbers.",
+    "price": 1950,
+    "mainImage": "1950(3).jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "4",
+    "description": "Nature-inspired wooden wall clock beautifully depicting a tree silhouette with a bird.",
+    "price": 1950,
+    "mainImage": "1950(4).jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "5",
+    "description": "Artistic wooden wall clock featuring randomly scattered mixed cutout numbers for a unique look.",
+    "price": 1950,
+    "mainImage": "1950.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "6",
+    "description": "Artistic vinyl record style wall clock featuring 'LOVE' typography and a romantic couple silhouette.",
+    "price": 1950,
+    "mainImage": "1950.jpg",
+    "specifications": {
+      "Material": "Vinyl / MDF",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "7",
+    "description": "Product catalog showcasing four unique and creative laser-cut wooden wall clock designs.",
+    "price": 2450,
+    "mainImage": "2450.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "8",
+    "description": "Romantic 'LOVE' lettered wall clock designed to hold a personalized photo frame.",
+    "price": 2800,
+    "mainImage": "2800.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "9",
+    "description": "Tech-themed wall clock uniquely designed with electronic circuit path patterns and USB shapes.",
+    "price": 2850,
+    "mainImage": "2850.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "10",
+    "description": "Customizable oval-shaped family name wall clock with laser-cut delicate patterns.",
+    "price": 2950,
+    "mainImage": "2950.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "14\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "11",
+    "description": "Classic multi-layered circular wooden wall clock with a premium finish.",
+    "price": 3500,
+    "mainImage": "3500(1).jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "12",
+    "description": "Modern square wall clock with soft rounded corners and a sleek central wooden stripe.",
+    "price": 3500,
+    "mainImage": "3500.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "13",
+    "description": "Minimalist vertical rectangular wall clock featuring a matte black frame and natural wood insert.",
+    "price": 3800,
+    "mainImage": "3800.jpg",
+    "specifications": {
+      "Material": "Metal & Wood",
+      "Size": "16\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "14",
+    "description": "Contemporary semi-circular wall clock creatively merged with stylish vertical wooden slats.",
+    "price": 3850,
+    "mainImage": "3850(1).jpg",
+    "specifications": {
+      "Material": "Basswood / MDF",
+      "Size": "12\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "15",
+    "description": "Intricate wooden perpetual calendar clock featuring laser-cut rotating rings to display months, days, and dates alongside a standard clock face.",
+    "price": 3850,
+    "mainImage": "3850(2).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "14\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "16",
+    "description": "Stylish and artistic wall clock featuring a beautifully laser-cut layered silhouette of a woman wearing a hat.",
+    "price": 3850,
+    "mainImage": "3850.jpg",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": "14\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "17",
+    "description": "Premium industrial-style circular wall clock with distinct wooden segments and elegant gold accents.",
+    "price": 4500,
+    "mainImage": "4500.jpg",
+    "specifications": {
+      "Material": "MDF & Acrylic",
+      "Size": "14\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

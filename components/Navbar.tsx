@@ -12,7 +12,7 @@ export default function Navbar() {
   const { cart } = useCart();
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const pathname = usePathname();
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Close menu on route change
@@ -170,7 +170,7 @@ export default function Navbar() {
           font-weight: 600;
           color: var(--foreground);
           opacity: 0.6;
-          transition: all 0.3s ease;
+          transition: opacity var(--transition-fast);
           text-decoration: none;
           white-space: nowrap;
         }

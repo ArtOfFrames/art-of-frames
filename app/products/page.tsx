@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Suspense } from 'react';
 import { unstable_noStore as noStore } from 'next/cache';
 import ProductView, { Product } from './ProductView';
 
@@ -87,6 +88,8 @@ export default async function ProductsPage() {
 
               allProducts.push({
                 ...p,
+                status: p.status || 'In Stock',
+                description: p.description || '',
                 price: finalPrice,
                 originalPrice: originalPrice,
                 discountPercentage: discountPercentage > 0 ? discountPercentage : undefined,
@@ -114,9 +117,15 @@ export default async function ProductsPage() {
   const categories = Array.from(categorySet);
 
   return (
-    <ProductView 
-      initialProducts={allProducts} 
-      categories={categories} 
-    />
+    <Suspense fallback={
+      <div className="container section-padding" style={{ textAlign: 'center', paddingTop: '120px' }}>
+        <p>Loading products...</p>
+      </div>
+    }>
+      <ProductView 
+        initialProducts={allProducts} 
+        categories={categories} 
+      />
+    </Suspense>
   );
 }

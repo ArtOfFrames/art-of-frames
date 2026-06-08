@@ -1,31 +1,107 @@
 [
   {
-    "name": "Couple",
-    "description": "Elegant laser-etched wood frame capturing the essence of togetherness.",
+    "name": "Wall Frame 01",
+    "description": "Elegant black wall art capturing a loving couple's beautiful journey into parenthood.",
     "price": 1590,
     "discount": 0,
     "salePrice": 0,
-    "mainImage": "WF-01.jpg",
+    "mainImage": "wf-couple.webp",
     "specifications": {
-      "Material": "Premium Walnut Wood",
-      "Size": "12 x 12 inches"
+      "Material": "4mm Plywood",
+      "Size": "12 x 10 inches"
     },
     "secondaryImages": [],
     "status": "In Stock",
-    "createdAt": "2026-05-01"
+    "createdAt": "2026-06-08"
   },
   {
-    "name": "Family",
-    "description": "Multi-layered family tree design in premium walnut finish.",
-    "price": 3500,
+    "name": "Wall Frame 02",
+    "description": "Frame your baby's first photo with this heartwarming family-focused silhouette wall art.",
+    "price": 1590,
+    "discount": 0,
     "salePrice": 0,
-    "mainImage": "WF-03.jpg",
+    "mainImage": "wf-family.webp",
     "specifications": {
-      "Material": "Layered Birch Wood",
-      "Size": "18 x 24 inches"
+      "Material": "4mm Plywood",
+      "Size": "12 x 10 inches"
     },
     "secondaryImages": [],
     "status": "In Stock",
-    "createdAt": "2026-05-15"
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Wall Frame 03",
+    "description": "Minimalist black wall frame designed to elegantly showcase your precious maternity ultrasound scan.",
+    "price": 1590,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "wf-hand.webp",
+    "specifications": {
+      "Material": "4mm Plywood",
+      "Size": "12 x 8 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Wall Frame 04",
+    "description": "A gorgeous, ready-to-hang wall cutout featuring a mother gently dangling a heart charm.",
+    "price": 1590,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "wf-heart.webp",
+    "specifications": {
+      "Material": "4mm Plywood",
+      "Size": "12 x 8 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Table Frame 01",
+    "description": "A beautiful tabletop silhouette of a couple celebrating love and their upcoming bundle of joy.",
+    "price": 1990,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "tf-couple.png",
+    "specifications": {
+      "Material": "4mm Plywood",
+      "Size": "12 x 9 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Table Frame 02",
+    "description": "Keep your precious sonogram safe in this elegant, matte black tabletop maternity keepsake.",
+    "price": 1990,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "tf-hand.png",
+    "specifications": {
+      "Material": "4mm Plywood",
+      "Size": "12 x 8 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Table Frame 03",
+    "description": "A lovely freestanding tabletop frame featuring a mother holding a sweet heart charm.",
+    "price": 1990,
+    "discount": 0,
+    "salePrice": 0,
+    "mainImage": "tf-heart.png",
+    "specifications": {
+      "Material": "4mm Plywood",
+      "Size": "12 x 8 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
   }
 ]

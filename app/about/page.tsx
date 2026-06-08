@@ -324,36 +324,11 @@ export default function AboutPage() {
           overflow: hidden;
         }
 
-        /* --- Section Subtitle (shared) --- */
-        .section-subtitle {
-          color: var(--primary);
-          font-weight: 800;
-          font-size: 0.8rem;
-          letter-spacing: 5px;
-          text-transform: uppercase;
-          margin-bottom: 1.2rem;
-          display: inline-block;
-        }
-
-        .section-title {
-          font-size: clamp(2.5rem, 5vw, 4rem);
-          font-family: var(--font-elegant);
-          font-weight: 400;
-          letter-spacing: -2px;
-          line-height: 1;
-          margin-bottom: 1.5rem;
-          color: var(--foreground);
-        }
-
-        .gold-accent {
-          color: var(--primary);
-        }
-
         /* ==============================
            HERO SECTION
            ============================== */
         .about-hero {
-          padding: 160px 0 100px;
+          padding: 160px 0 var(--section-gap-lg);
           position: relative;
           min-height: 100vh;
           display: flex;
@@ -387,7 +362,7 @@ export default function AboutPage() {
         .about-hero-container {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 5rem;
+          gap: var(--section-gap-lg);
           align-items: center;
           position: relative;
           z-index: 10;
@@ -417,52 +392,7 @@ export default function AboutPage() {
           flex-wrap: wrap;
         }
 
-        .primary-btn {
-          background: var(--primary);
-          color: black;
-          border: none;
-          padding: 1.2rem 2.5rem;
-          border-radius: 100px;
-          font-weight: 800;
-          letter-spacing: 2px;
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          display: flex;
-          align-items: center;
-          gap: 0.8rem;
-          font-size: 0.9rem;
-        }
-        .primary-btn:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
-        }
-        .primary-btn .btn-arrow {
-          transition: transform 0.3s ease;
-        }
-        .primary-btn:hover .btn-arrow {
-          transform: translateX(5px);
-        }
 
-        .outline-btn {
-          background: transparent;
-          color: var(--foreground);
-          border: 1px solid var(--glass-border);
-          padding: 1.2rem 2.5rem;
-          border-radius: 100px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          cursor: pointer;
-          transition: all 0.4s ease;
-          font-size: 0.9rem;
-          display: flex;
-          align-items: center;
-          gap: 0.8rem;
-        }
-        .outline-btn:hover {
-          border-color: var(--primary);
-          color: var(--primary);
-          transform: translateY(-5px);
-        }
 
         /* Hero Visual - Redesigned Stats Panel */
         .about-hero-visual {
@@ -605,7 +535,7 @@ export default function AboutPage() {
            STORY SECTION
            ============================== */
         .story-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
           position: relative;
         }
@@ -624,7 +554,7 @@ export default function AboutPage() {
         .story-grid {
           display: grid;
           grid-template-columns: 1fr 1.2fr;
-          gap: 5rem;
+          gap: var(--section-gap-lg);
           align-items: center;
           position: relative;
           z-index: 2;
@@ -696,13 +626,13 @@ export default function AboutPage() {
            VALUES SECTION
            ============================== */
         .values-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .values-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
         }
 
         .values-header .section-title {
@@ -712,7 +642,7 @@ export default function AboutPage() {
         .values-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: var(--grid-gap);
         }
 
         .value-card {
@@ -762,7 +692,7 @@ export default function AboutPage() {
            PROCESS SECTION
            ============================== */
         .process-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
           position: relative;
           overflow: hidden;
@@ -784,7 +714,7 @@ export default function AboutPage() {
 
         .process-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: var(--section-gap);
         }
 
         .process-sub-desc {
@@ -856,14 +786,14 @@ export default function AboutPage() {
            CRAFTSMANSHIP SECTION
            ============================== */
         .craft-section {
-          padding: 100px 0;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .craft-grid {
           display: grid;
           grid-template-columns: 1.2fr 1fr;
-          gap: 5rem;
+          gap: var(--section-gap-lg);
           align-items: center;
         }
 
@@ -929,13 +859,13 @@ export default function AboutPage() {
            CTA SECTION
            ============================== */
         .about-cta-section {
-          padding: 80px 0 100px;
+          padding-block: var(--section-gap-lg);
           border-top: 1px solid var(--glass-border);
         }
 
         .about-cta-card {
           border-radius: 40px;
-          padding: 5rem;
+          padding: var(--space-10);
           text-align: center;
           background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(0,0,0,0.5) 100%);
           border: 1px solid rgba(212,175,55,0.2);
@@ -1007,11 +937,17 @@ export default function AboutPage() {
         @media (max-width: 1024px) {
           .about-hero-container {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: var(--section-gap);
           }
           .about-hero {
             padding-top: 120px;
             min-height: auto;
+          }
+          .story-grid {
+            gap: var(--section-gap);
+          }
+          .craft-grid {
+            gap: var(--section-gap);
           }
           .about-hero-content {
             text-align: center;
@@ -1022,14 +958,7 @@ export default function AboutPage() {
           .about-hero-actions {
             justify-content: center;
           }
-          .story-grid {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-          .craft-grid {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
+
           .craft-list {
             max-width: 500px;
           }

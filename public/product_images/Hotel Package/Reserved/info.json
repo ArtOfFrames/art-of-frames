@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Reserved Sign",
+    "description": "Elegant laser cut script font reserved table sign in matte black",
+    "price": 650,
+    "mainImage": "Rs. 650 (2 x 6).jpg",
+    "specifications": {
+      "Material": "Acrylic/Basswood",
+      "Size": "2\" x 6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Reserved Sign",
+    "description": "Minimalist stenciled laser cut wooden reserved sign with angled slot base",
+    "price": 650,
+    "mainImage": "Rs. 650 (2 x 6).png",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "2\" x 6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Reserved Sign",
+    "description": "Bold laser cut wooden lettering on a contrasting dark background table sign",
+    "price": 750,
+    "mainImage": "Rs. 750 (2 x 6)(1).png",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "2\" x 6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Reserved Sign",
+    "description": "Premium laser engraved wooden block reserved sign with personalized text option",
+    "price": 750,
+    "mainImage": "Rs. 750 (2 x 6).png",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "2\" x 6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Reserved Sign",
+    "description": "Vertical laser cut restaurant reserved stand with custom branding and logo space",
+    "price": 950,
+    "mainImage": "Rs. 950 (4 x 6).png",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\" x 6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

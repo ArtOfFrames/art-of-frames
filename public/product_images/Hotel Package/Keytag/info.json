@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Hotel Keychain",
+    "description": "Custom laser cut dual-layer hotel room number keychain",
+    "price": "1 - 5 pcs= Rs. 450 5+ pcs= Rs. 400",
+    "mainImage": "1 - 5 pcs= Rs. 450 5+ pcs= Rs. 400.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Villa Keychain",
+    "description": "Premium laser engraved wooden villa keychain and matching room sign combo",
+    "price": "1 - 5 pcs= Rs. 450 5+ pcs= Rs. 400",
+    "mainImage": "1 - 5 pcs= Rs. 450 5+ pcs= Rs. 400.png",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Numbered Keytag",
+    "description": "Simple laser engraved rectangular wooden keytags with numbers and logo",
+    "price": 300,
+    "mainImage": "300 (2 x 1).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

@@ -5,6 +5,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 type CartItem = {
   id: string;
   name: string;
+  category: string;
   price: number;
   quantity: number;
   image?: string;
@@ -14,6 +15,7 @@ type CartContextType = {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   total: number;
 };
@@ -37,7 +39,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Persist cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } catch {
+      console.warn('Failed to save cart to localStorage');
+    }
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
@@ -54,12 +60,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart(prev => prev.filter(i => i.id !== id));
   };
 
+  const updateQuantity = (id: string, quantity: number) => {
+    if (quantity < 1) {
+      removeFromCart(id);
+      return;
+    }
+    setCart(prev => prev.map(i => i.id === id ? { ...i, quantity } : i));
+  };
+
   const clearCart = () => setCart([]);
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, total }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, total }}>
       {children}
     </CartContext.Provider>
   );

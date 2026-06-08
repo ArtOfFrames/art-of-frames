@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Floral Top",
+    "description": "Elegant circular wooden table sign engraved with a laurel wreath border, perfect for wedding top tables and special events.",
+    "price": 650,
+    "mainImage": "650.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Classic Number",
+    "description": "Beautifully crafted wooden table number featuring a clean rectangular design with an elegant laser-cut leafy accent strip.",
+    "price": 650,
+    "mainImage": "650 (2).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Dark Elegant",
+    "description": "Premium dark-stained wooden table number signs with contrasting natural wood lettering for a modern, rustic aesthetic.",
+    "price": 650,
+    "mainImage": "Rs. 650 (4x3 inches).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "name": "1",
+    "description": "Charming wooden couple keytag set featuring a 'YOU HAVE MY HEART' cutout rectangle and a matching interlocking heart piece.",
+    "price": null,
+    "mainImage": "couple keytags.png",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "2",
+    "description": "Elegant two-panel laser-cut black wooden wall art depicting a romantic couple holding hands under a tree and streetlamp.",
+    "price": null,
+    "mainImage": "couple wallart.png",
+    "specifications": {
+      "Material": "MDF Wood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "3",
+    "description": "Beautifully engraved wooden rose box with an intricate hollow lattice pattern and a personalized name carved alongside a rose inside.",
+    "price": null,
+    "mainImage": "rose box.png",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "4",
+    "description": "Romantic double heart-shaped wooden photo frame supported by two cute laser-cut cupid silhouettes on a sturdy base.",
+    "price": null,
+    "mainImage": "cupid frame.png",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "5",
+    "description": "Creative interactive wooden Valentine's Day greeting card with a sliding mechanism that brings a cute engraved couple together to reveal a hidden love message.",
+    "price": null,
+    "mainImage": "slide card.png",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "6",
+    "description": "Customized laser-cut wooden long-stemmed roses featuring personalized names beautifully integrated into the stems.",
+    "price": null,
+    "mainImage": "name-flowers.png",
+    "specifications": {
+      "Material": "Plywood & Acrylic",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "7",
+    "description": "Premium open-book style wooden anniversary card with engraved heartfelt messages and an elegant interlocking heart mirror design.",
+    "price": null,
+    "mainImage": "open-card.jpg",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "8",
+    "description": "Magical wooden shadow candle holder that projects a romantic heart-shaped couple silhouette onto the wall when lit.",
+    "price": null,
+    "mainImage": "show candle holder.jpg",
+    "specifications": {
+      "Material": "Plywood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

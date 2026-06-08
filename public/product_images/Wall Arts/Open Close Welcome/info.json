@@ -1,0 +1,54 @@
+[
+  {
+    "name": "01",
+    "description": "Round open sign featuring dual-layer cutout text with a vibrant turquoise background plate.",
+    "price": 1500,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "02",
+    "description": "Elegant round salon open sign decorated with engraved floral line art and white overlay text.",
+    "price": 1500,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "03",
+    "description": "Multi-layered round hello sign showcasing intricate dark geometric patterns contrasted with script lettering.",
+    "price": 1500,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "04",
+    "description": "Tropical style round sign featuring split green monstera leaf cutouts flanking block hello text.",
+    "price": 1500,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

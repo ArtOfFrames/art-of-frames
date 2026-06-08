@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Custom Baby Stat Frame - Ellena Design",
+    "description": "Personalized laser engraved wooden baby birth announcement photo frame with custom details",
+    "price": 1050,
+    "mainImage": "1050.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Baby Stat Frame - Lenka Design",
+    "description": "Laser cut and engraved wooden newborn birth stats frame with layered name and decorative elements",
+    "price": 1450,
+    "mainImage": "1450 ii.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Baby Milestone Stand - Giraffe & Stork Design",
+    "description": "Premium layered laser cut wooden birth stats display stand with engraved icons",
+    "price": 1800,
+    "mainImage": "1800.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Baby Birth Stats Shadow Box Frame",
+    "description": "Beautiful multi-layered paper cut or laser cut shadow box frame for baby birth details",
+    "price": 1950,
+    "mainImage": "1950 ii.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Cloud & Moon Baby Birth Stat Board",
+    "description": "Colorful painted laser cut wooden cloud and moon themed baby birth announcement display",
+    "price": 1950,
+    "mainImage": "shadow.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Hello World Baby Birth Milestone Plaque",
+    "description": "Circular laser engraved wooden birth announcement plaque featuring custom slits to hold hospital wristbands",
+    "price": 2150,
+    "mainImage": "2150.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

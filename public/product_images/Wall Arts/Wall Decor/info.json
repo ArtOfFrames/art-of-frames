@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Tree Art",
+    "description": "Black metal wall art depicting a detailed tree silhouette",
+    "price": 1500,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Size": "12\" X 12\""
+    }
+  },
+  {
+    "name": "Leaf Art",
+    "description": "Minimalist black metal wall art with monstera leaf design",
+    "price": 2300,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Size": "12\" X 18\""
+    }
+  },
+  {
+    "name": "Bird Art",
+    "description": "Three-piece black metal wall art featuring bird silhouettes on branches",
+    "price": 2500,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Size": "12\" X 24\""
+    }
+  },
+  {
+    "name": "Bird Set",
+    "description": "Four-piece black metal wall art set with continuous bird and branch design",
+    "price": 3000,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Size": "12\" X 24\""
+    }
+  },
+  {
+    "name": "Tribal Art",
+    "description": "Set of four black metal wall art pieces depicting tribal dance silhouettes",
+    "price": 3000,
+    "mainImage": "05.jpg",
+    "specifications": {
+      "Size": "12\" X 30\""
+    }
+  },
+  {
+    "name": "Moai Art",
+    "description": "Stylized black metal wall art depicting two Moai head silhouettes",
+    "price": 1900,
+    "mainImage": "06.jpg",
+    "specifications": {
+      "Size": "12\" X 16\""
+    }
+  },
+  {
+    "name": "Elephant Art",
+    "description": "Black metal wall art featuring a walking elephant silhouette",
+    "price": 1900,
+    "mainImage": "07.jpg",
+    "specifications": {
+      "Size": "12\" X 16\""
+    }
+  },
+  {
+    "name": "Music Art",
+    "description": "Set of four circular black metal wall art pieces with musical symbols",
+    "price": 1500,
+    "mainImage": "08.jpg",
+    "specifications": {
+      "Size": "12\" X 12\""
+    }
+  },
+  {
+    "name": "Elephant Head",
+    "description": "Artistic black metal wall art showing an elephant head profile",
+    "price": 1500,
+    "mainImage": "09.jpg",
+    "specifications": {
+      "Size": "12\" X 12\""
+    }
+  },
+  {
+    "name": "Elephant Portrait",
+    "description": "Black metal wall art featuring a detailed elephant face design",
+    "price": 1500,
+    "mainImage": "10.jpg",
+    "specifications": {
+      "Size": "12\" X 12\""
+    }
+  },
+  {
+    "name": "Horse Art",
+    "description": "Dynamic black metal wall art silhouette of a galloping horse",
+    "price": 2200,
+    "mainImage": "11.jpg",
+    "specifications": {
+      "Size": "12\" X 18\""
+    }
+  },
+  {
+    "name": "Deer Art",
+    "description": "Elegant black metal wall art featuring a deer profile with antlers",
+    "price": 1800,
+    "mainImage": "12.jpg",
+    "specifications": {
+      "Size": "12\" X 16\""
+    }
+  },
+  {
+    "name": "Owl Art",
+    "description": "Detailed black metal wall art depicting a wise owl sitting on a branch",
+    "price": 1700,
+    "mainImage": "13.jpg",
+    "specifications": {
+      "Size": "12\" X 14\""
+    }
+  }
+]

@@ -3,7 +3,8 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '../../components/CartContext';
-import { ShoppingBag, ChevronLeft, ChevronRight, X, Search } from 'lucide-react';
+import { ShoppingBag, ChevronLeft, ChevronRight, X, Search, ChevronDown } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
 export interface Product {
   id: string;
@@ -32,8 +33,47 @@ export default function ProductView({ initialProducts, categories }: ProductView
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('newest');
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [expandedParents, setExpandedParents] = useState<Record<string, boolean>>({});
+  const ITEMS_PER_PAGE = 25;
   const addTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { addToCart } = useCart();
+  const searchParams = useSearchParams();
+
+  // Build hierarchical category groups from flat categories list
+  const categoryGroups = useMemo(() => {
+    type Group = { parent: string; children: string[] };
+    const groups: Group[] = [];
+    const childParents = new Map<string, string>();
+
+    // Identify which categories are children of a parent
+    for (const cat of categories) {
+      if (cat === 'All') continue;
+      const idx = cat.indexOf(' / ');
+      if (idx !== -1) {
+        childParents.set(cat, cat.slice(0, idx));
+      }
+    }
+
+    const parentSet = new Set(childParents.values());
+    const processed = new Set<string>();
+
+    // Build groups for parents with children
+    for (const parent of parentSet) {
+      const children = categories.filter(c => childParents.get(c) === parent);
+      groups.push({ parent, children });
+      processed.add(parent);
+      children.forEach(c => processed.add(c));
+    }
+
+    // Add remaining standalone categories
+    for (const cat of categories) {
+      if (cat === 'All' || processed.has(cat)) continue;
+      groups.push({ parent: cat, children: [] });
+    }
+
+    return groups;
+  }, [categories]);
 
   const handleAddToCart = (product: Product) => {
     addToCart({ ...product, quantity: 1, image: product.mainImage });
@@ -41,6 +81,18 @@ export default function ProductView({ initialProducts, categories }: ProductView
     setAddedProductId(product.id);
     addTimerRef.current = setTimeout(() => setAddedProductId(null), 1500);
   };
+
+  // Auto-open product modal from URL ?focus= param
+  useEffect(() => {
+    const focusId = searchParams?.get('focus');
+    if (focusId) {
+      const product = initialProducts.find(p => p.id === focusId);
+      if (product) {
+        setSelectedProduct(product);
+        setCurrentImageIndex(0);
+      }
+    }
+  }, [searchParams, initialProducts]);
 
   useEffect(() => {
     return () => {
@@ -52,7 +104,10 @@ export default function ProductView({ initialProducts, categories }: ProductView
     // 1. Filter by category
     let result = initialProducts;
     if (activeCategory !== 'All') {
-      result = result.filter(p => p.category === activeCategory);
+      // Hierarchical filter: parent shows its own products AND its subcategory products
+      result = result.filter(p => 
+        p.category === activeCategory || p.category.startsWith(activeCategory + ' / ')
+      );
     }
 
     // 2. Filter by search query (case-insensitive name search)
@@ -85,6 +140,24 @@ export default function ProductView({ initialProducts, categories }: ProductView
     });
   }, [activeCategory, searchQuery, sortBy, initialProducts]);
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory, searchQuery, sortBy]);
+
+  // Paginate
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage, ITEMS_PER_PAGE]);
+
+  // Fillers to keep last row balanced (max 4 columns)
+  const fillerCount = useMemo(() => {
+    const remaining = paginatedProducts.length % 4;
+    return remaining === 0 ? 0 : 4 - remaining;
+  }, [paginatedProducts.length]);
+
   const allImages = selectedProduct ? [selectedProduct.mainImage, ...selectedProduct.secondaryImages] : [];
 
   const handleNextImage = () => {
@@ -99,7 +172,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
     return (
       <main className="products-page">
         <div className="container empty-state">
-          <h1 className="title">Our Products <span className="gold-slash">/</span></h1>
+          <h1 className="title">Our Products <span className="gold-accent">/</span></h1>
           <div className="empty-box">
             <p>No products found in <code>public/product_images/</code>.</p>
             <p>Add a category folder and an <code>info.json</code> file to get started.</p>
@@ -109,7 +182,6 @@ export default function ProductView({ initialProducts, categories }: ProductView
           .products-page { padding-top: 120px; min-height: 100vh; background: var(--background); }
           .empty-state { padding: 4rem 2rem; text-align: center; }
           .title { font-size: 3.5rem; font-family: var(--font-elegant); margin-bottom: 2rem; }
-          .gold-slash { color: var(--primary); }
           .empty-box { 
             padding: 4rem; 
             background: var(--glass-bg); 
@@ -127,152 +199,248 @@ export default function ProductView({ initialProducts, categories }: ProductView
     <main className="products-page">
       <div className="container">
         <header className="page-header">
-          <h1 className="title">Our Products <span className="gold-slash">/</span></h1>
-          
-          <div className="controls-bar">
-            {/* Category Filters */}
-            <nav className="filter-nav">
-              {categories.map(cat => (
-                <button
-                  key={cat}
-                  className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveCategory(cat);
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </nav>
-
-            <div className="search-sort-group">
-              {/* Search Bar */}
-              <div className="search-wrapper">
-                <Search size={18} className="search-icon" />
+          <span className="section-subtitle">Browse Collection</span>
+          <h1 className="title">Our Products <span className="gold-accent">/</span></h1>
+          <p className="page-desc">Explore our curated collection of precision laser-cut products.</p>
+        </header>
+        
+        <div className="products-layout-wrapper">
+          {/* Sidebar Filters */}
+          <aside className="products-sidebar">
+            {/* Search */}
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Search</h3>
+              <div className="sidebar-search-wrapper">
+                <Search size={16} className="sidebar-search-icon" />
                 <input
                   type="text"
                   placeholder="Search by name..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="search-input"
+                  className="sidebar-search-input"
                 />
                 {searchQuery && (
                   <button 
-                    className="clear-search-btn" 
-                    onClick={() => setSearchQuery('')} 
+                    className="sidebar-search-clear" 
+                    onClick={() => setSearchQuery('')}
                     aria-label="Clear search"
                   >
-                    <X size={14} />
+                    <X size={12} />
                   </button>
                 )}
               </div>
-
-              {/* Sort Dropdown */}
-              <div className="sort-wrapper">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="sort-select"
-                  aria-label="Sort products"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                </select>
-              </div>
             </div>
-          </div>
-        </header>
 
-        {/* Product Grid */}
-        {filteredProducts.length > 0 ? (
-          <div className="product-grid">
-            {filteredProducts.map((product, index) => (
-              <div 
-                key={product.id} 
-                className="product-card"
-                onClick={() => { setSelectedProduct(product); setCurrentImageIndex(0); }}
-              >                  <div className="product-image-container">
-                  <Image
-                    src={product.mainImage}
-                    alt={product.name}
-                    fill
-                    className="product-image"
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    {...(index < 3 ? { priority: true, loading: 'eager' as const } : {})}
-                  />
-                  <div className="product-overlay">
-                    <button 
-                      className="overlay-btn add-cart-overlay"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToCart(product);
-                      }}
-                    >
-                      <ShoppingBag size={14} /> ADD TO CART
-                    </button>
-                    <button className="overlay-btn">View Details</button>
-                  </div>
-                  <span className="card-category">{product.category}</span>
-                  {product.discountPercentage && product.discountPercentage > 0 && (
-                    <span className="sale-badge">SALE -{product.discountPercentage}%</span>
-                  )}
-                  {product.status !== 'In Stock' && (
-                    <span className={`status-badge ${product.status.toLowerCase().replace(' ', '-')}`}>
-                      {product.status}
-                    </span>
-                  )}
-                </div>
-                
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <div className="product-meta">
-                    <div className="price-group">
-                      {product.originalPrice && (
-                        <span className="product-price-original">Rs. {product.originalPrice.toLocaleString()}</span>
+            {/* Sort */}
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Sort By</h3>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="sidebar-select"
+                aria-label="Sort products"
+              >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+              </select>
+            </div>
+
+            {/* Categories */}
+            <div className="sidebar-section">
+              <h3 className="sidebar-title">Categories</h3>
+              <nav className="sidebar-nav">
+                <button
+                  className={`sidebar-btn ${activeCategory === 'All' ? 'active' : ''}`}
+                  onClick={() => setActiveCategory('All')}
+                >
+                  <span className="sidebar-btn-name">All</span>
+                  <span className="sidebar-btn-count">{initialProducts.length}</span>
+                </button>
+                {categoryGroups.map(group => {
+                  const count = group.children.length > 0
+                    ? initialProducts.filter(p => 
+                        p.category === group.parent || group.children.includes(p.category)
+                      ).length
+                    : initialProducts.filter(p => p.category === group.parent).length;
+                  const isActive = activeCategory === group.parent || group.children.includes(activeCategory);
+                  const isExpanded = expandedParents[group.parent] ?? false;
+                  const hasChildren = group.children.length > 0;
+                  return (
+                    <div key={group.parent}>
+                      <button
+                        className={`sidebar-btn ${isActive ? 'active' : ''}`}
+                        onClick={() => {
+                          if (hasChildren) {
+                            setExpandedParents(prev => ({
+                              ...prev,
+                              [group.parent]: !(prev[group.parent] ?? true)
+                            }));
+                          }
+                          setActiveCategory(group.parent);
+                        }}
+                      >
+                        <span className="sidebar-btn-name">{group.parent}</span>
+                        <span className="sidebar-btn-right">
+                          <span className="sidebar-btn-count">{count}</span>
+                          {hasChildren && (
+                            <ChevronDown 
+                              size={14} 
+                              className={`parent-chevron ${isExpanded ? 'expanded' : ''}`}
+                            />
+                          )}
+                        </span>
+                      </button>
+                      {hasChildren && (
+                        <div className={`sidebar-subnav ${isExpanded ? '' : 'collapsed'}`}>
+                          {group.children.map(child => (
+                            <button
+                              key={child}
+                              className={`sidebar-sub-btn ${activeCategory === child ? 'active' : ''}`}
+                              onClick={() => setActiveCategory(child)}
+                            >
+                              <span>{child.includes(' / ') ? child.split(' / ').pop() : child}</span>
+                              <span className="sidebar-btn-count">{
+                                initialProducts.filter(p => p.category === child).length
+                              }</span>
+                            </button>
+                          ))}
+                        </div>
                       )}
-                      <span className="product-price-main">Rs. {product.price.toLocaleString()}</span>
+                    </div>
+                  );
+                })}
+              </nav>
+            </div>
+          </aside>
+
+          {/* Main Content */}
+          <div className="products-main">
+            {/* Results count */}
+            <div className="results-bar">
+              <span className="results-count">{filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found</span>
+              {filteredProducts.length > 0 && (
+                <span className="results-page-info">Page {currentPage} of {totalPages}</span>
+              )}
+            </div>
+
+            {/* Product Grid */}
+            {filteredProducts.length > 0 ? (
+              <div className="product-grid">
+                {paginatedProducts.map((product, index) => (
+                  <div 
+                    key={product.id} 
+                    className="product-card"
+                    onClick={() => { setSelectedProduct(product); setCurrentImageIndex(0); }}
+                  >
+                    <div className="product-image-container">
+                      <Image
+                        src={product.mainImage}
+                        alt={product.name}
+                        fill
+                        className="product-image"
+                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
+                        style={{ objectFit: 'cover' }}
+                      />
+                      <div className="product-overlay">
+                        <button className="overlay-btn">View Details</button>
+                      </div>
+                      <span className="card-category">{product.category}</span>
+                      {product.discountPercentage && product.discountPercentage > 0 && (
+                        <span className="sale-badge">SALE -{product.discountPercentage}%</span>
+                      )}
+                      {product.status && product.status !== 'In Stock' && (
+                        <span className={`status-badge ${product.status.toLowerCase().replace(' ', '-')}`}>
+                          {product.status}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="product-info">
+                      <h3 className="product-name">{product.name}</h3>
+                      <div className="product-meta">
+                        <div className="price-group">
+                          {product.originalPrice && (
+                            <span className="product-price-original">Rs. {product.originalPrice.toLocaleString()}</span>
+                          )}
+                          <span className="product-price-main">Rs. {product.price.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="product-card-actions">
+                        <button 
+                          className={`add-to-cart-btn ${addedProductId === product.id ? 'added' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
+                        >
+                          {addedProductId === product.id ? (
+                            <>✓ Added</>
+                          ) : (
+                            <><ShoppingBag size={16} /> ADD TO CART</>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="product-card-actions">
-                    <button 
-                      className={`add-to-cart-btn ${addedProductId === product.id ? 'added' : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToCart(product);
-                      }}
-                    >
-                      {addedProductId === product.id ? (
-                        <>✓ Added</>
-                      ) : (
-                        <><ShoppingBag size={16} /> ADD TO CART</>
-                      )}
-                    </button>
-                  </div>
-                </div>
+                ))}
+                {/* Invisible filler items to keep last row balanced */}
+                {Array.from({ length: fillerCount }).map((_, i) => (
+                  <div key={`filler-${i}`} className="product-card product-card-filler" aria-hidden="true" />
+                ))}
               </div>
-            ))}
+            ) : (
+              <div className="search-empty-state">
+                <Search size={48} className="empty-icon" />
+                <h3>No products found</h3>
+                <p>We couldn&apos;t find any products matching your search query or filters.</p>
+                <button 
+                  className="reset-btn"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setActiveCategory('All');
+                    setSortBy('newest');
+                  }}
+                >
+                  Reset Filters
+                </button>
+              </div>
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button
+                  className="page-btn"
+                  disabled={currentPage <= 1}
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                >
+                  ← Prev
+                </button>
+                <div className="page-numbers">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      className={`page-num ${currentPage === page ? 'active' : ''}`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  className="page-btn"
+                  disabled={currentPage >= totalPages}
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                >
+                  Next →
+                </button>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="search-empty-state">
-            <Search size={48} className="empty-icon" />
-            <h3>No products found</h3>
-            <p>We couldn&apos;t find any products matching your search query or filters.</p>
-            <button 
-              className="reset-btn"
-              onClick={() => {
-                setSearchQuery('');
-                setActiveCategory('All');
-                setSortBy('newest');
-              }}
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
+        </div>
       </div>
 
       {/* Quick View Modal */}
@@ -377,8 +545,31 @@ export default function ProductView({ initialProducts, categories }: ProductView
           padding-top: 120px;
           min-height: 100vh;
           background: var(--background);
+          position: relative;
+          overflow: hidden;
         }
-        .page-header { margin-bottom: 4rem; }
+        .products-page::before {
+          content: '';
+          position: fixed;
+          top: -50%;
+          right: -30%;
+          width: 800px;
+          height: 800px;
+          background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .page-header {
+          position: relative;
+          z-index: 10;
+        }
+        .page-header { margin-bottom: 2.5rem; }
+        .page-desc {
+          font-size: 1rem;
+          opacity: 0.55;
+          line-height: 1.6;
+          margin-bottom: 2rem;
+        }
         .title { 
           font-size: clamp(2.5rem, 5vw, 4rem); 
           font-family: var(--font-elegant); 
@@ -386,148 +577,256 @@ export default function ProductView({ initialProducts, categories }: ProductView
           margin-bottom: 2rem;
           letter-spacing: -2px;
         }
-        .gold-slash { color: var(--primary); }
 
-        /* Filters */
-        .filter-nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .filter-btn {
-          padding: 0.8rem 1.8rem;
-          border-radius: 100px;
-          border: 1px solid var(--glass-border);
-          background: transparent;
-          color: var(--foreground);
-          font-weight: 600;
-          font-size: 0.85rem;
-          cursor: pointer;
-          transition: all 0.3s;
-          text-transform: capitalize;
-        }
-        .filter-btn.active {
-          background: var(--primary);
-          color: black;
-          border-color: var(--primary);
-          box-shadow: 0 10px 20px rgba(212,175,55,0.2);
-        }
-
-        /* Controls Bar */
-        .controls-bar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1.5rem;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        }
-        .search-sort-group {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-          flex-grow: 1;
-          justify-content: flex-end;
-        }
-        .search-wrapper {
+        /* ==============================
+           LAYOUT WRAPPER (Sidebar + Main)
+           ============================== */
+        .products-layout-wrapper {
+          display: grid;
+          grid-template-columns: var(--sidebar-width) 1fr;
+          gap: var(--layout-gap);
+          align-items: start;
           position: relative;
-          display: flex;
-          align-items: center;
+          z-index: 10;
+        }
+
+        /* ==============================
+           SIDEBAR
+           ============================== */
+        .products-sidebar {
           background: var(--glass-bg);
           border: 1px solid var(--glass-border);
-          border-radius: 100px;
-          padding: 0.2rem 0.5rem 0.2rem 1.2rem;
-          transition: all 0.3s;
-          flex-grow: 1;
-          max-width: 320px;
+          border-radius: 20px;
+          padding: 1.5rem;
+          position: sticky;
+          top: 100px;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
         }
-        .search-wrapper:focus-within {
-          border-color: var(--primary);
-          box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        .sidebar-section {
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
         }
-        .search-icon {
-          color: var(--foreground);
+        .sidebar-section:not(:last-child) {
+          padding-bottom: 1.25rem;
+          border-bottom: 1px solid var(--glass-border);
+        }
+        .sidebar-title {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 2px;
           opacity: 0.5;
-          margin-right: 0.6rem;
+          font-weight: 800;
+        }
+
+        /* Sidebar Search */
+        .sidebar-search-wrapper {
+          display: flex;
+          align-items: center;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid var(--glass-border);
+          border-radius: 10px;
+          padding: 0.4rem 0.6rem;
+          transition: all 0.3s;
+        }
+        .sidebar-search-wrapper:focus-within {
+          border-color: var(--primary);
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.12);
+        }
+        .sidebar-search-icon {
+          color: var(--foreground);
+          opacity: 0.4;
+          margin-right: 0.5rem;
           flex-shrink: 0;
         }
-        .search-input {
+        .sidebar-search-input {
           background: transparent;
           border: none;
           outline: none;
           color: var(--foreground);
           font-family: var(--font-main);
           font-size: 0.85rem;
-          height: 2.5rem;
           width: 100%;
         }
-        .search-input::placeholder {
+        .sidebar-search-input::placeholder {
           color: var(--foreground);
-          opacity: 0.4;
+          opacity: 0.3;
         }
-        .clear-search-btn {
-          background: rgba(255, 255, 255, 0.05);
+        .sidebar-search-clear {
+          background: rgba(255,255,255,0.05);
           border-radius: 50%;
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
           color: var(--foreground);
-          opacity: 0.6;
-          transition: opacity 0.2s;
+          opacity: 0.5;
           border: none;
           padding: 0;
           cursor: pointer;
         }
-        .clear-search-btn:hover {
+        .sidebar-search-clear:hover {
           opacity: 1;
         }
-        .sort-wrapper {
-          position: relative;
-          background: var(--glass-bg);
+
+        /* Sidebar Select */
+        .sidebar-select {
+          padding: 0.6rem 0.75rem;
+          border-radius: 10px;
           border: 1px solid var(--glass-border);
-          border-radius: 100px;
-          padding: 0 2.5rem 0 1.5rem;
-          transition: all 0.3s;
-          display: flex;
-          align-items: center;
-          height: calc(2.5rem + 0.4rem);
-          max-width: 220px;
-          width: 100%;
+          background: rgba(255,255,255,0.03);
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 500;
+          font-family: var(--font-main);
+          cursor: pointer;
+          outline: none;
+          transition: all 0.2s;
         }
-        .sort-wrapper:focus-within {
+        .sidebar-select:focus {
           border-color: var(--primary);
         }
-        .sort-select {
-          background: transparent;
-          border: none;
-          outline: none;
-          color: var(--foreground);
-          font-family: var(--font-main);
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          appearance: none;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          width: 100%;
-          height: 100%;
-        }
-        .sort-wrapper::after {
-          content: '';
-          position: absolute;
-          right: 1.2rem;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 0;
-          height: 0;
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 5px solid var(--foreground);
-          pointer-events: none;
-          opacity: 0.6;
-        }
-        .sort-select option {
+        .sidebar-select option {
           background: var(--background);
           color: var(--foreground);
+        }
+
+        /* Sidebar Nav */
+        .sidebar-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+        }
+        .sidebar-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.6rem 0.75rem;
+          border: none;
+          border-radius: 8px;
+          background: transparent;
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: left;
+          width: 100%;
+          font-family: inherit;
+        }
+        .sidebar-btn-right {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+        .parent-chevron {
+          flex-shrink: 0;
+          transition: transform 0.25s ease;
+          opacity: 0.5;
+        }
+        .parent-chevron.expanded {
+          transform: rotate(0deg);
+        }
+        .parent-chevron:not(.expanded) {
+          transform: rotate(-90deg);
+        }
+        .sidebar-subnav {
+          margin-left: 0.75rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.1rem;
+          border-left: 1px solid var(--glass-border);
+          padding-left: 0.5rem;
+          overflow: hidden;
+          max-height: 500px;
+          transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+          opacity: 1;
+        }
+        .sidebar-subnav.collapsed {
+          max-height: 0;
+          opacity: 0;
+          margin: 0;
+          padding: 0;
+          border: none;
+        }
+        .sidebar-btn:hover {
+          background: rgba(212,175,55,0.05);
+          color: var(--primary);
+        }
+        .sidebar-btn.active {
+          background: rgba(212,175,55,0.1);
+          color: var(--primary);
+          font-weight: 700;
+        }
+        .sidebar-btn-name {
+          text-transform: capitalize;
+        }
+        .sidebar-btn-count {
+          font-size: 0.65rem;
+          opacity: 0.4;
+          font-weight: 600;
+          background: var(--glass-bg);
+          padding: 0.1rem 0.4rem;
+          border-radius: 100px;
+        }
+        .sidebar-btn.active .sidebar-btn-count {
+          opacity: 0.8;
+          background: rgba(212,175,55,0.15);
+        }
+        .sidebar-sub-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.4rem 0.6rem;
+          border: none;
+          border-radius: 6px;
+          background: transparent;
+          color: var(--foreground);
+          font-size: 0.8rem;
+          font-weight: 400;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-align: left;
+          width: 100%;
+          font-family: inherit;
+          opacity: 0.7;
+        }
+        .sidebar-sub-btn:hover {
+          opacity: 1;
+          color: var(--primary);
+        }
+        .sidebar-sub-btn.active {
+          opacity: 1;
+          color: var(--primary);
+          font-weight: 600;
+        }
+
+        /* ==============================
+           MAIN CONTENT
+           ============================== */
+        .products-main {
+          display: flex;
+          flex-direction: column;
+          gap: var(--grid-gap);
+        }
+
+        .results-bar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 0.25rem;
+        }
+        .results-count {
+          font-size: 0.85rem;
+          opacity: 0.5;
+          font-weight: 500;
+        }
+        .results-page-info {
+          font-size: 0.8rem;
+          opacity: 0.4;
         }
 
         .search-empty-state {
@@ -577,21 +876,19 @@ export default function ProductView({ initialProducts, categories }: ProductView
         /* Grid */
         .product-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 1.5rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--grid-gap);
           padding-bottom: 5rem;
-        }
-        @media (max-width: 1400px) {
-          .product-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-        @media (max-width: 1100px) {
-          .product-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 768px) {
           .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         }
         @media (max-width: 480px) {
           .product-grid { grid-template-columns: 1fr; }
+        }
+        .product-card-filler {
+          visibility: hidden;
+          pointer-events: none;
         }
         .product-card {
           background: var(--glass-bg);
@@ -611,7 +908,7 @@ export default function ProductView({ initialProducts, categories }: ProductView
 
         .product-image-container {
           position: relative;
-          aspect-ratio: 4/3;
+          aspect-ratio: 1/1;
           overflow: hidden;
           background: #0a0a0a;
         }
@@ -654,17 +951,6 @@ export default function ProductView({ initialProducts, categories }: ProductView
           color: black;
           border-color: var(--primary);
         }
-        .overlay-btn.add-cart-overlay {
-          background: var(--primary);
-          color: black;
-          border-color: var(--primary);
-          font-weight: 700;
-        }
-        .overlay-btn.add-cart-overlay:hover {
-          background: white;
-          border-color: white;
-        }
-
         /* Badge */
         .status-badge {
           position: absolute;
@@ -935,10 +1221,6 @@ export default function ProductView({ initialProducts, categories }: ProductView
         .spec-value { font-weight: 700; font-size: 0.85rem; color: var(--foreground); }
         
         .modal-actions { display: flex; flex-direction: column; gap: 1rem; margin-top: auto; }
-        .primary-btn { 
-          background: var(--primary); color: black; border: none; padding: 1.2rem; 
-          border-radius: 100px; font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
         .whatsapp-btn-large {
           text-align: center; border: 1px solid var(--glass-border); padding: 1.2rem;
           border-radius: 100px; font-weight: 700; transition: 0.3s;
@@ -963,27 +1245,77 @@ export default function ProductView({ initialProducts, categories }: ProductView
           opacity: 1;
         }
 
+        /* ==============================
+           PAGINATION
+           ============================== */
+        .pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          padding: 2rem 0 5rem;
+        }
+        .page-btn {
+          padding: 0.6rem 1.2rem;
+          border-radius: 100px;
+          border: 1px solid var(--glass-border);
+          background: var(--glass-bg);
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-family: inherit;
+        }
+        .page-btn:hover:not(:disabled) {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+        .page-btn:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+        .page-numbers {
+          display: flex;
+          gap: 0.3rem;
+        }
+        .page-num {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--foreground);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-family: inherit;
+        }
+        .page-num:hover {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+        .page-num.active {
+          background: var(--primary);
+          color: black;
+          border-color: var(--primary);
+        }
+
+        /* ==============================
+           RESPONSIVE
+           ============================== */
         @media (max-width: 968px) {
+          .products-layout-wrapper {
+            grid-template-columns: 1fr;
+          }
+          .products-sidebar {
+            position: static;
+          }
           .modal-body { grid-template-columns: 1fr; }
           .modal-details { padding: 2.5rem; }
           .modal-title { font-size: 2rem; }
           .modal-content { max-width: 500px; max-height: 90vh; overflow-y: auto; }
-        }
-
-        @media (max-width: 768px) {
-          .controls-bar {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 1rem;
-          }
-          .search-sort-group {
-            flex-direction: row;
-            justify-content: space-between;
-          }
-          .search-wrapper, .sort-wrapper {
-            max-width: none;
-            flex: 1;
-          }
         }
       `}</style>
     </main>

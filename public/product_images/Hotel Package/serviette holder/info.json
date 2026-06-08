@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Mountain Napkin Holder",
+    "description": "Creative laser cut mountain silhouette wooden napkin holder for cafes",
+    "price": "1 = 1200 _ 6 = 6500",
+    "mainImage": "1 = 1200 _ 6 = 6500.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Lotus Napkin Holder",
+    "description": "Elegant laser cut lotus flower petal design wooden tissue stand",
+    "price": "1 = 1600 _ 6 = 8900",
+    "mainImage": "1 = 1600 _ 6 = 8900(1).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Patterned Napkin Holders",
+    "description": "Assorted laser cut wooden napkin holders featuring cat, coffee, cactus, and floral shapes",
+    "price": "1 = 1600 _ 6 = 8900",
+    "mainImage": "1 = 1600 _ 6 = 8900.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": ""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

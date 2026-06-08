@@ -23,69 +23,59 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="glass" style={{
-      marginTop: 'auto',
-      padding: '4rem 0 2rem',
-      borderTop: '1px solid var(--glass-border)',
-      background: 'rgba(var(--background-rgb), 0.3)',
-      width: '100%',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '4rem',
-          marginBottom: '4rem'
-        }}>
-          <div>
-            <div style={{ marginBottom: '1.5rem' }}>
+    <footer className="footer">
+      <div className="footer-container container">
+        <div className="footer-grid">
+          {/* Brand */}
+          <div className="footer-brand">
+            <div className="footer-logo">
               <Image
                 src={theme === 'dark' ? '/Dark Mode Logo.png' : '/Light Mode Logo.png'}
                 alt="Art Of Frames"
                 width={140}
                 height={140}
-                style={{ objectFit: 'contain' }}
+                className="footer-logo-img"
               />
             </div>
-            <p style={{ opacity: 0.5, fontSize: '0.9rem', lineHeight: 1.8, maxWidth: '280px' }}>
+            <p className="footer-tagline">
               Bespoke laser cutting and engraving services that bring your most intricate artistic visions to life with premium precision.
             </p>
           </div>
 
-          <div>
-            <h4 style={{ marginBottom: '1.5rem', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', opacity: 0.8, letterSpacing: '2px' }}>Explore</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <li><a href="/products" style={{ opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>Collections</a></li>
-              <li><a href="/gallery" style={{ opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>Gallery</a></li>
-              <li><a href="/about" style={{ opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>Process</a></li>
-              <li><a href="/contact" style={{ opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>Contact</a></li>
-              <li><a href="/reseller" style={{ opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>Join as a Reseller</a></li>
+          {/* Explore */}
+          <div className="footer-col">
+            <h4 className="footer-col-title">Explore</h4>
+            <ul className="footer-links">
+              <li><a href="/products">Collections</a></li>
+              <li><a href="/gallery">Gallery</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/reseller">Join as a Reseller</a></li>
             </ul>
           </div>
 
-          <div>
-            <h4 style={{ marginBottom: '1.5rem', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', opacity: 0.8, letterSpacing: '2px' }}>Contact Us</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          {/* Contact */}
+          <div className="footer-col">
+            <h4 className="footer-col-title">Contact Us</h4>
+            <ul className="footer-contact-links">
               <li>
-                <a href="tel:+94750350109" style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>
-                  <Phone size={18} strokeWidth={1.5} style={{ color: 'var(--accent)' }} />
+                <a href="tel:+94750350109" className="footer-contact-item">
+                  <Phone size={18} strokeWidth={1.5} className="footer-contact-icon" />
                   <span>+94 750 350 109</span>
                 </a>
               </li>
               <li>
-                <a href="https://api.whatsapp.com/send?phone=94750350109" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '1rem', opacity: 0.6, fontSize: '0.9rem', transition: '0.3s' }}>
-                  <MessageCircle size={18} strokeWidth={1.5} style={{ color: 'var(--accent)' }} />
+                <a href="https://api.whatsapp.com/send?phone=94750350109" target="_blank" rel="noopener noreferrer" className="footer-contact-item">
+                  <MessageCircle size={18} strokeWidth={1.5} className="footer-contact-icon" />
                   <span>+94 750 350 109</span>
                 </a>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h4 style={{ marginBottom: '1.5rem', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', opacity: 0.8, letterSpacing: '2px' }}>Follow Us</h4>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+          {/* Social */}
+          <div className="footer-col">
+            <h4 className="footer-col-title">Follow Us</h4>
+            <div className="footer-social">
               {[
                 {
                   icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>,
@@ -103,17 +93,7 @@ export default function Footer() {
                   url: 'https://www.instagram.com/art.of.frames/'
                 }
               ].map((item, i) => (
-                <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" aria-label={item.label} className="glass" style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  opacity: 0.6,
-                  transition: 'all 0.3s ease',
-                  color: 'var(--foreground)'
-                }}>
+                <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" aria-label={item.label} className="footer-social-link glass">
                   {item.icon}
                 </a>
               ))}
@@ -121,17 +101,145 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{
-          borderTop: '1px solid var(--glass-border)',
-          paddingTop: '2.5rem',
-          textAlign: 'center',
-          opacity: 0.4,
-          fontSize: '0.8rem',
-          letterSpacing: '1px'
-        }}>
+        <div className="footer-bottom">
           &copy; {new Date().getFullYear()} Art Of Frames. All rights reserved.
         </div>
       </div>
+
+      <style jsx>{`
+        .footer {
+          margin-top: auto;
+          padding: 4rem 0 2rem;
+          border-top: 1px solid var(--glass-border);
+          background: rgba(var(--background-rgb), 0.3);
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+        .footer-container {
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Grid Layout */
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 4rem;
+          margin-bottom: 4rem;
+        }
+
+        /* Brand */
+        .footer-logo {
+          margin-bottom: 1.5rem;
+        }
+        .footer-logo-img {
+          object-fit: contain;
+        }
+        .footer-tagline {
+          opacity: 0.5;
+          font-size: 0.9rem;
+          line-height: 1.8;
+          max-width: 280px;
+        }
+
+        /* Columns */
+        .footer-col-title {
+          margin-bottom: 1.5rem;
+          font-size: 0.9rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          opacity: 0.8;
+          letter-spacing: 2px;
+        }
+
+        .footer-links {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .footer-links a {
+          opacity: 0.6;
+          font-size: 0.9rem;
+          transition: opacity 0.3s;
+          color: var(--foreground);
+          text-decoration: none;
+        }
+        .footer-links a:hover {
+          opacity: 1;
+          color: var(--primary);
+        }
+
+        /* Contact Links */
+        .footer-contact-links {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+        .footer-contact-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          opacity: 0.6;
+          font-size: 0.9rem;
+          transition: opacity 0.3s;
+          color: var(--foreground);
+          text-decoration: none;
+        }
+        .footer-contact-item:hover {
+          opacity: 1;
+        }
+        .footer-contact-icon {
+          color: var(--accent);
+          flex-shrink: 0;
+        }
+
+        /* Social Links */
+        .footer-social {
+          display: flex;
+          gap: 1rem;
+        }
+        .footer-social-link {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0.6;
+          transition: all 0.3s ease;
+          color: var(--foreground);
+        }
+        .footer-social-link:hover {
+          opacity: 1;
+          color: var(--primary);
+        }
+
+        /* Bottom Bar */
+        .footer-bottom {
+          border-top: 1px solid var(--glass-border);
+          padding-top: 2.5rem;
+          text-align: center;
+          opacity: 0.4;
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+          .footer {
+            padding: 3rem 0 1.5rem;
+          }
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
+          .footer-tagline {
+            max-width: 100%;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

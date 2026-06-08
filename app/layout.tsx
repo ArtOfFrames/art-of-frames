@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${playfair.variable}`} data-theme="dark" suppressHydrationWarning>
       <body 
         suppressHydrationWarning
         style={{ 

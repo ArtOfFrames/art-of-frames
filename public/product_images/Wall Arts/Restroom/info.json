@@ -1,0 +1,237 @@
+[
+  {
+    "name": "01",
+    "description": "Modern gray acrylic washroom sign with elegant rose gold acrylic male and female figures.",
+    "price": 1000,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "02",
+    "description": "Minimalist outline design restroom sign featuring sleek gold finish male and female stick figures.",
+    "price": 1000,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "7\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "03",
+    "description": "Sleek matte black acrylic washroom sign with minimalist male and female outline figures.",
+    "price": 1000,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "04",
+    "description": "Funny and creative bathroom sign featuring black acrylic silhouettes in a humorous pose.",
+    "price": 1000,
+    "mainImage": "04.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "05",
+    "description": "Dual-tone wooden restroom signs combining light plywood cutout plates on dark walnut backing.",
+    "price": 2500,
+    "mainImage": "05.jpg",
+    "specifications": {
+      "Material": "Wood",
+      "Size": "6\" X 4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "06",
+    "description": "Wave-cut dark wooden signs featuring black acrylic text and modern stick figure cutouts.",
+    "price": 2500,
+    "mainImage": "06.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\" X 2.5\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "07",
+    "description": "Wave-styled light natural wood signs mounted on a sleek black acrylic base frame.",
+    "price": 2500,
+    "mainImage": "07.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\" X 2.5\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "08",
+    "description": "Premium horizontal wooden plaques with light plywood background and raised dark lettering.",
+    "price": 2500,
+    "mainImage": "08.jpg",
+    "specifications": {
+      "Material": "Wood",
+      "Size": "Standard"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "09",
+    "description": "Circular layered signs showcasing raised black and white acrylic figures on dark plates.",
+    "price": 2500,
+    "mainImage": "09.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "10",
+    "description": "Unique cutout circular signs with attached rectangular wooden nameplates for modern toilets.",
+    "price": 2500,
+    "mainImage": "10.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "11",
+    "description": "Elegant black acrylic restroom silhouettes featuring formal suit and dress attire designs.",
+    "price": 1000,
+    "mainImage": "11.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "12",
+    "description": "Square brushed gold metallic restroom sign featuring cutout figures and a directional arrow.",
+    "price": 2000,
+    "mainImage": "12.jpg",
+    "specifications": {
+      "Material": "Acrylic (Metallic Finish)",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "13",
+    "description": "Circular dark wood plaques showcasing bold white acrylic male and female figures.",
+    "price": 2000,
+    "mainImage": "13.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "14",
+    "description": "Three-piece inclusive restroom signs with white acrylic overlays on rich wooden bases.",
+    "price": 2500,
+    "mainImage": "14.jpg",
+    "specifications": {
+      "Material": "Wood / Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "15",
+    "description": "Sleek rounded rectangular frames highlighting artistic cutout male and female lifestyle silhouettes.",
+    "price": 1000,
+    "mainImage": "15.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "16",
+    "description": "Circular white sign with a brown border and rose gold mirrored toilet text.",
+    "price": 2500,
+    "mainImage": "16.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "17",
+    "description": "Abstract geometric black restroom figures featuring sharp lines on a light background.",
+    "price": 1000,
+    "mainImage": "17.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "18",
+    "description": "Modern white acrylic silhouettes showcasing a stylized bowtie suit and dress design.",
+    "price": 1000,
+    "mainImage": "18.jpg",
+    "specifications": {
+      "Material": "Acrylic",
+      "Size": "6\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+
+]

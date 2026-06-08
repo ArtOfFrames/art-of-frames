@@ -1,0 +1,158 @@
+[
+  {
+    "name": "QR Coaster",
+    "description": "Custom laser engraved QR code menu coaster for cafes and restaurants",
+    "price": 4600,
+    "mainImage": "6 pack_ 4600(3).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "QR Coaster",
+    "description": "Elegant laser cut wooden coaster with embedded QR code design",
+    "price": 4600,
+    "mainImage": "6 pack_ 4600(4).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Wooden Coaster",
+    "description": "Beautiful laser cut wave pattern wooden coaster set",
+    "price": 4600,
+    "mainImage": "6 pack_ 4600.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Mandala Coaster",
+    "description": "Intricate laser cut mandala design coaster with holder",
+    "price": 5600,
+    "mainImage": "6 pack_ 5600.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Flower Coaster",
+    "description": "Minimalist laser cut floral outline wooden coaster",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600(2).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Casino Coaster",
+    "description": "Fun laser cut poker and casino card suits coaster set",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600(3).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Geometric Coaster",
+    "description": "Geometric interlocking pattern laser cut wooden coaster",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600(4).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Leaf Coaster",
+    "description": "Artistic laser cut leaf silhouette circular wooden coaster",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600(5).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Rose Coaster",
+    "description": "Lovely laser cut rose flower shaped wooden coaster",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600.jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Square QR Coaster",
+    "description": "Square shaped laser engraved QR code tabletop menu coaster",
+    "price": 4600,
+    "mainImage": "6 pack_ 4600(1).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Quote Coaster",
+    "description": "Laser cut text typography wooden coaster with custom holder",
+    "price": 4600,
+    "mainImage": "6 pack_ 4600(2).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Petal Coaster",
+    "description": "Stylish laser cut multi petal flower design wooden coaster",
+    "price": 3600,
+    "mainImage": "6 pack_ 3600(1).jpg",
+    "specifications": {
+      "Material": "Basswood",
+      "Size": "4\""
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

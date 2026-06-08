@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "2b7d181df1d872175bc76981f2c3401f.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "226e18e74470e7a1b16b42ba2afd4e14.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "06a6d440c117189b3f800df537333942.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "57af1aea8f1e501071ccb5a3af892bfc.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "d73d8ab7d3b8586ef0d1e4419f7d7786.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "IMG_20251011_105503_edit_1840367111987537.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "IMG_20251016_191730_edit_1840277159085176.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "Custom Sign Board",
+    "description": "Custom made for your company",
+    "price": "custom",
+    "mainImage": "IMG_20251102_164120_edit_1840197840907029.jpg",
+    "specifications": {
+      "Material": "Basswood/Acrylic",
+      "Size": "Custom"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]

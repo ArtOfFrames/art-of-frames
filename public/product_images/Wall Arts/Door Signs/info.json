@@ -1,0 +1,41 @@
+[
+  {
+    "name": "01",
+    "description": "Premium laser-cut wooden Push and Pull signs featuring bold vertical typography and clear hand icons.",
+    "price": 2500,
+    "mainImage": "01.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "10 x 4 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "02",
+    "description": "Minimalist circular icon door signs with clean lettering for modern office and shop entrances.",
+    "price": 2500,
+    "mainImage": "02.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "8 x 5 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  },
+  {
+    "name": "03",
+    "description": "Creative silhouette figure signs indicating push and pull actions beautifully crafted from layered wood.",
+    "price": 2500,
+    "mainImage": "03.jpg",
+    "specifications": {
+      "Material": "Birchwood",
+      "Size": "7 x 5 inches"
+    },
+    "secondaryImages": [],
+    "status": "In Stock",
+    "createdAt": "2026-06-08"
+  }
+]
