@@ -1,15 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Exclude large static assets from serverless function bundles
+  // Exclude large image files from serverless function bundles (keep JSON/config)
   outputFileTracingExcludes: {
     "/*": [
-      "public/product_images/**/*",
-      "public/gallery_images/**/*",
       "public/**/*.png",
       "public/**/*.jpg",
       "public/**/*.jpeg",
       "public/**/*.webp",
+      "public/**/*.gif",
     ],
   },
 };
