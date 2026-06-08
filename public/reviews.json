@@ -10,28 +10,28 @@
     "name": "Roshan",
     "role": "Small Business Owner",
     "stars": 5,
-    "photo": "/reviews/roshan.webp,",
+    "photo": "/reviews/roshan.jpeg",
     "review": "Our branded keytags are the perfect gift for our customers. Quality is exceptional, delivered fast, and the team was super helpful throughout."
   },
    {
     "name": "Praveen",
     "role": "",
     "stars": 5,
-    "photo": "/reviews/praveen.webp,",
+    "photo": "/reviews/praveen.jpeg",
     "review": "The ultimate personalized gift! The laser detailing is gorgeous and totally unique."
   },
  {
-    "name": "Menaka",
+    "name": "Shalika",
     "role": "Cafe Owner",
     "stars": 5,
-    "photo": "/reviews/menaka.webp,",
+    "photo": "/reviews/shalika.jpeg",
     "review": "Stunning quality! The plymount finish looks incredibly professional and clean on my wall."
   },
   {
     "name": "Mr. Weerasinghe",
     "role": "Business Owner",
     "stars": 5,
-    "photo": "/reviews/weera.webp,",
+    "photo": "/reviews/weera.jpeg",
     "review": "Beautiful design and precision cuts. It completely transformed the vibe of our room."
   }
   
