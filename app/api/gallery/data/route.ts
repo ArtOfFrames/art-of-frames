@@ -5,29 +5,21 @@ import path from 'path';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const galleryDir = path.join(process.cwd(), 'public', 'gallery_images');
-  
-  // Ensure directory exists
-  if (!fs.existsSync(galleryDir)) {
-    fs.mkdirSync(galleryDir, { recursive: true });
+  const manifestPath = path.join(process.cwd(), 'public', 'gallery-data.json');
+
+  if (!fs.existsSync(manifestPath)) {
+    return NextResponse.json({ categories: [], galleryData: {} });
   }
 
-  const categories = fs.readdirSync(galleryDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+  try {
+    const manifestContent = fs.readFileSync(manifestPath, 'utf8');
+    const galleryData = JSON.parse(manifestContent);
 
-  const galleryData: Record<string, string[]> = {};
+    const categories = Object.keys(galleryData);
 
-  categories.forEach(category => {
-    const categoryPath = path.join(galleryDir, category);
-    const files = fs.readdirSync(categoryPath)
-      .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
-      .map(file => `/gallery_images/${category}/${file}`);
-    
-    if (files.length > 0) {
-      galleryData[category] = files;
-    }
-  });
-
-  return NextResponse.json({ categories, galleryData });
+    return NextResponse.json({ categories, galleryData });
+  } catch (e) {
+    console.error('Error reading gallery data:', e);
+    return NextResponse.json({ categories: [], galleryData: {} });
+  }
 }

@@ -33,6 +33,7 @@ export default function ProductView() {
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedParents, setExpandedParents] = useState<Record<string, boolean>>({});
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const ITEMS_PER_PAGE = 25;
   const addTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { addToCart } = useCart();
@@ -362,14 +363,21 @@ export default function ProductView() {
                     onClick={() => { setSelectedProduct(product); setCurrentImageIndex(0); }}
                   >
                     <div className="product-image-container">
-                      <Image
-                        src={product.mainImage}
-                        alt={product.name}
-                        fill
-                        className="product-image"
-                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
-                        style={{ objectFit: 'cover' }}
-                      />
+                      {!failedImages.has(product.mainImage) ? (
+                        <Image
+                          src={product.mainImage}
+                          alt={product.name}
+                          fill
+                          className="product-image"
+                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
+                          style={{ objectFit: 'cover' }}
+                          onError={() => setFailedImages(prev => new Set(prev).add(product.mainImage))}
+                        />
+                      ) : (
+                        <div className="product-image-fallback">
+                          <ShoppingBag size={24} />
+                        </div>
+                      )}
                       <div className="product-overlay">
                         <button className="overlay-btn">View Details</button>
                       </div>
@@ -944,6 +952,15 @@ export default function ProductView() {
           transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .product-card:hover .product-image { transform: scale(1.08); }
+        .product-image-fallback {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--glass-bg);
+          opacity: 0.3;
+        }
 
         /* Overlay */
         .product-overlay {

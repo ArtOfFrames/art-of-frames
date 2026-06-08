@@ -10,6 +10,7 @@ interface GalleryGridProps {
 
 export default function GalleryGrid({ initialCategories, galleryData }: GalleryGridProps) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<'left' | 'right' | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -150,14 +151,25 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
             return (
               <div key={src + index} className="gallery-item" onClick={() => openLightbox(globalIndex)}>
                 <div className="img-reveal-wrapper">
-                  <Image
-                    src={src}
-                    alt={`Gallery image ${globalIndex}`}
-                    fill
-                    className="gallery-img"
-                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
-                    style={{ objectFit: 'cover' }}
-                  />
+                  {!failedImages.has(src) ? (
+                    <Image
+                      src={src}
+                      alt={`Gallery image ${globalIndex}`}
+                      fill
+                      className="gallery-img"
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 25vw"
+                      style={{ objectFit: 'cover' }}
+                      onError={() => setFailedImages(prev => new Set(prev).add(src))}
+                    />
+                  ) : (
+                    <div className="gallery-img-fallback">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                      </svg>
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -251,6 +263,7 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
                 className="lightbox-image"
                 sizes="90vw"
                 priority
+                onError={() => setFailedImages(prev => new Set(prev).add(filteredImages[selectedIndex]))}
               />
               <div className="lightbox-image-shadow"></div>
             </div>
@@ -396,6 +409,15 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
         }
         .gallery-item:hover .gallery-img {
           transform: scale(1.1);
+        }
+        .gallery-img-fallback {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--glass-bg);
+          opacity: 0.2;
         }
 
         /* ==============================
