@@ -302,7 +302,7 @@ export default function ProductView() {
                           if (hasChildren) {
                             setExpandedParents(prev => ({
                               ...prev,
-                              [group.parent]: !(prev[group.parent] ?? true)
+                              [group.parent]: !(prev[group.parent] ?? false)
                             }));
                           }
                           setActiveCategory(group.parent);
