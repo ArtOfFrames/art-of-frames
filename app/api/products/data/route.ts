@@ -46,7 +46,7 @@ export async function GET() {
     
     const hasJson = entries.find(e => e.name === 'info.json');
     if (hasJson) {
-      const category = path.relative(productsDir, dir).replace(/\\/g, ' / ');
+      const category = path.relative(productsDir, dir).replace(/[\\/]/g, ' / ');
       const jsonPath = path.join(dir, 'info.json');
       
       try {
