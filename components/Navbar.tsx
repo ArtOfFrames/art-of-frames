@@ -241,14 +241,14 @@ export default function Navbar() {
           top: 0;
           left: 0;
           width: 100%;
-          height: 100vh;
+          height: 100dvh;
           background: var(--background);
           z-index: 999;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 2.5rem;
+          gap: 2rem;
           transform: translateX(100%);
           transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
@@ -256,7 +256,7 @@ export default function Navbar() {
           transform: translateX(0);
         }
         .mobile-nav-link {
-          font-size: 2.5rem;
+          font-size: 2rem;
           font-weight: 800;
           text-transform: uppercase;
           color: var(--foreground);
@@ -276,14 +276,33 @@ export default function Navbar() {
             display: flex;
           }
           .navbar {
-            height: 70px;
+            height: 64px;
           }
           .logo-wrapper {
-            min-width: 120px;
-            height: 40px;
+            min-width: 100px;
+            height: 36px;
+          }
+          .logo-img {
+            max-width: 140px;
           }
           .actions-group {
             min-width: auto;
+            gap: 0.25rem;
+          }
+          .action-btn {
+            width: 36px;
+            height: 36px;
+          }
+        }
+        @media (max-width: 480px) {
+          .mobile-nav-link {
+            font-size: 1.5rem;
+          }
+          .mobile-overlay {
+            gap: 1.5rem;
+          }
+          .logo-img {
+            max-width: 110px;
           }
         }
       `}</style>

@@ -455,19 +455,23 @@ export default function Home() {
               display: flex;
               flex-direction: column;
               height: auto;
-              padding-bottom: 120px;
+              padding-bottom: 100px;
             }
             .hero-image-slider {
               position: relative;
-              height: 45vh;
+              height: 40vh;
               width: 100%;
               order: 1;
+            }
+            .hero-glow-aura {
+              width: 60vw;
+              height: 60vw;
             }
             .hero-info-stack {
               order: 2;
               width: 100%;
-              padding: 0 1.5rem;
-              margin-top: 1rem;
+              padding: 0 1.25rem;
+              margin-top: 0.5rem;
             }
             .hero-content-left, .hero-content-right {
               position: relative;
@@ -483,33 +487,62 @@ export default function Home() {
               display: none; 
             }
             .hero-product-title {
-              font-size: 2.2rem;
-              margin-top: 0.5rem;
+              font-size: 1.8rem;
+              margin-top: 0.25rem;
+              margin-bottom: 0.4rem;
             }
             .hero-product-desc {
-              max-width: 400px;
+              max-width: 100%;
               margin: 0 auto;
-              font-size: 0.85rem;
+              font-size: 0.8rem;
+              padding: 0 0.5rem;
             }
             .hero-cta-wrapper {
-              bottom: 30px;
+              bottom: 20px;
             }
             .nav-btn {
               top: auto;
               bottom: 12vh;
-              width: 40px;
-              height: 40px;
+              width: 36px;
+              height: 36px;
+              font-size: 0.85rem;
             }
-            .prev-btn { left: 10%; }
-            .next-btn { right: 10%; }
+            .prev-btn { left: 5%; }
+            .next-btn { right: 5%; }
             .explore-btn {
-              padding: 0.8rem 2rem;
-              font-size: 0.75rem;
+              padding: 0.7rem 1.5rem;
+              font-size: 0.7rem;
+              letter-spacing: 2px;
             }
           }
-          @media (max-height: 750px) and (max-width: 768px) {
-             .hero-product-desc { display: none; }
-             .hero-image-slider { height: 40vh; }
+          @media (max-width: 480px) {
+            .hero-product-title {
+              font-size: 1.5rem;
+            }
+            .hero-product-desc {
+              font-size: 0.75rem;
+              padding: 0;
+            }
+            .hero-image-slider {
+              height: 35vh;
+            }
+            .nav-btn {
+              width: 32px;
+              height: 32px;
+              bottom: 12vh;
+            }
+            .explore-btn {
+              padding: 0.6rem 1.2rem;
+              font-size: 0.65rem;
+            }
+            .hero-cta-wrapper {
+              bottom: 12px;
+            }
+          }
+          @media (max-height: 700px) and (max-width: 768px) {
+            .hero-product-desc { display: none; }
+            .hero-image-slider { height: 35vh; }
+            .hero-product-title { font-size: 1.4rem; }
           }
         `}</style>
       </section>

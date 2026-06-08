@@ -100,9 +100,22 @@ export default function GalleryView() {
           }
           .description {
             margin: 0 auto;
+            max-width: 100%;
           }
           .gallery-page {
             padding-top: 80px;
+          }
+          .title {
+            font-size: 2.2rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .title {
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+          }
+          .description {
+            font-size: 0.85rem;
           }
         }
       `}</style>

@@ -229,14 +229,32 @@ export default function Footer() {
 
         @media (max-width: 768px) {
           .footer {
-            padding: 3rem 0 1.5rem;
+            padding: 2.5rem 0 1.5rem;
           }
           .footer-grid {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
+            gap: 2rem;
           }
           .footer-tagline {
             max-width: 100%;
+          }
+          .footer-logo-img {
+            max-width: 120px;
+          }
+          .footer-col-title {
+            margin-bottom: 1rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .footer {
+            padding: 2rem 0 1rem;
+          }
+          .footer-grid {
+            gap: 1.5rem;
+          }
+          .footer-bottom {
+            font-size: 0.7rem;
+            padding-top: 1.5rem;
           }
         }
       `}</style>

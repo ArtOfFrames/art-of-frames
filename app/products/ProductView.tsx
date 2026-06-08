@@ -1361,6 +1361,68 @@ export default function ProductView() {
           .modal-title { font-size: 2rem; }
           .modal-content { max-width: 500px; max-height: 90vh; overflow-y: auto; }
         }
+        @media (max-width: 768px) {
+          .products-page {
+            padding-top: 80px;
+          }
+          .title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+          }
+          .page-header {
+            margin-bottom: 1.5rem;
+          }
+          .products-sidebar {
+            padding: 1rem;
+          }
+          .sidebar-section:not(:last-child) {
+            padding-bottom: 0.75rem;
+          }
+          .product-grid {
+            gap: 0.75rem;
+          }
+          .product-info {
+            padding: 0.75rem 0.75rem 0.85rem;
+          }
+          .product-name {
+            font-size: 0.85rem;
+          }
+          .product-price-main {
+            font-size: 0.85rem;
+          }
+          .add-to-cart-btn {
+            font-size: 0.55rem;
+            padding: 0.4rem 0.5rem;
+          }
+          .modal-details {
+            padding: 1.5rem;
+          }
+          .modal-title {
+            font-size: 1.5rem;
+          }
+          .modal-price {
+            font-size: 1.5rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .title {
+            font-size: 1.8rem;
+          }
+          .product-name {
+            font-size: 0.8rem;
+          }
+          .product-card {
+            border-radius: 12px;
+          }
+          .sidebar-btn {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.8rem;
+          }
+          .sidebar-sub-btn {
+            padding: 0.35rem 0.5rem;
+            font-size: 0.75rem;
+          }
+        }
       `}</style>
     </main>
   );

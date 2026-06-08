@@ -368,12 +368,34 @@ export default function GalleryGrid({ initialCategories, galleryData }: GalleryG
         @media (max-width: 768px) {
           .gallery-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+          }
+          .gallery-layout-wrapper {
+            grid-template-columns: 1fr;
             gap: 1rem;
+          }
+          .gallery-sidebar {
+            position: static;
+            padding: 1rem;
+          }
+          .gallery-item {
+            border-radius: 14px;
           }
         }
         @media (max-width: 480px) {
           .gallery-grid {
             grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .gallery-sidebar {
+            padding: 0.75rem;
+          }
+          .sidebar-btn {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.8rem;
+          }
+          .gallery-item {
+            border-radius: 10px;
           }
         }
         .gallery-item-filler {

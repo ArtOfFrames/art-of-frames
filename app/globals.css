@@ -148,10 +148,25 @@ button {
   padding-inline: clamp(16px, 4vw, 60px);
 }
 
+/* Mobile container override */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 14px;
+  }
+}
+
 /* ===== DESIGN SYSTEM: Section Spacing ===== */
 .section-padding {
   padding-block: var(--section-gap);
   border-top: 1px solid var(--glass-border);
+}
+
+/* Mobile body fix to prevent horizontal scroll */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
 
 /* Shared Pattern Classes */

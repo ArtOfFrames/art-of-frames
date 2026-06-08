@@ -756,32 +756,38 @@ export default function CartPage() {
         }
 
         @media (max-width: 768px) {
-          .cart-item-card {
-            grid-template-columns: 56px 1fr;
-            gap: 0.6rem;
-            padding: 0.85rem;
+          .cart-page {
+            padding-top: 0;
           }
-          .cart-item-image {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
+          .cart-layout {
+            gap: 1.5rem;
           }
           .cart-item-card {
-            grid-template-columns: 56px 1fr;
-            gap: 0.6rem;
-            padding: 0.85rem;
+            grid-template-columns: 48px 1fr;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border-radius: 14px;
           }
           .cart-item-image {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+          }
+          .cart-item-name {
+            font-size: 0.85rem;
+          }
+          .cart-item-category {
+            font-size: 0.55rem;
+          }
+          .cart-item-unit-price {
+            font-size: 0.7rem;
           }
           .cart-item-quantity {
             grid-column: 2;
             flex-direction: row;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.15rem;
+            gap: 0.4rem;
+            margin-top: 0.1rem;
           }
           .qty-label {
             display: none;
@@ -791,26 +797,34 @@ export default function CartPage() {
             flex-direction: row;
             align-items: center;
             justify-content: flex-end;
-            gap: 0.5rem;
-            margin-top: 0.15rem;
+            gap: 0.4rem;
+            margin-top: 0.1rem;
           }
-          .item-total-label {
-            display: none;
-          }
-          .cart-item-total {
-            flex-direction: row;
+          .item-total-price {
+            font-size: 0.9rem;
           }
           .item-remove-btn {
+            width: 26px;
+            height: 26px;
             margin-top: 0;
           }
           .cart-total-bar {
-            padding: 1rem;
+            padding: 0.85rem 1rem;
           }
           .total-bar-amount {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
           }
           .delivery-option {
-            padding: 0.85rem 1rem;
+            padding: 0.75rem 0.85rem;
+          }
+          .option-text strong {
+            font-size: 0.8rem;
+          }
+          .option-text .option-desc {
+            font-size: 0.65rem;
+          }
+          .summary-sticky {
+            padding: 1.25rem;
           }
         }
 
