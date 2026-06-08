@@ -95,9 +95,9 @@ export default async function ProductsPage() {
                 discountPercentage: discountPercentage > 0 ? discountPercentage : undefined,
                 id: `${category}-${p.name}-${index}`.toLowerCase().replace(/\s+/g, '-'),
                 category: category,
-                mainImage: `/api/images/product_images/${path.relative(productsDir, dir).replace(/\\/g, '/')}/${p.mainImage}`,
+                mainImage: `/product_images/${path.relative(productsDir, dir).replace(/\\/g, '/')}/${p.mainImage}`,
                 secondaryImages: (p.secondaryImages || []).map((img: string) => 
-                  `/api/images/product_images/${path.relative(productsDir, dir).replace(/\\/g, '/')}/${img}`
+                  `/product_images/${path.relative(productsDir, dir).replace(/\\/g, '/')}/${img}`
                 )
               });
             }

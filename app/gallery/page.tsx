@@ -24,7 +24,7 @@ export default async function GalleryPage() {
     const categoryPath = path.join(galleryDir, category);
     const files = fs.readdirSync(categoryPath)
       .filter(file => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
-      .map(file => `/api/images/gallery_images/${category}/${file}`);
+      .map(file => `/gallery_images/${category}/${file}`);
     
     if (files.length > 0) {
       galleryData[category] = files;
